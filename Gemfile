@@ -6,6 +6,7 @@ gem 'pg'
 gem 'active_model_serializers'
 
 group :development, :test do
+  gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'

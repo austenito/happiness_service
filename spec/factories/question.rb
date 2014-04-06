@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :question do
-    text "Where does a nyan cat live?"
+    text Faker::Lorem.sentence(11)
   end
 end
