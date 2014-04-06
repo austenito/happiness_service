@@ -55,11 +55,11 @@ Think of a ladder representing where people stand in your country.
 
 At the top of the ladder are the people who are the best off - those who have the most money, the most education and the most respected jobs. At the bottom are the people who are the worst off - who have the least money, least education, and the least respected jobs or no job. The higher up you are on the ladder, the closer you are to the people at the very top; the lower you are the closer you are to people at the very bottom.
 
-* Slider of position
+* Bottom of Ladder -> Top of Ladder
 
 #### To what extent is what you're doing interesting?
 
-* Slider of not at all to extremely
+* Not at all - > Extremely
 
 #### On average, how many hours do you work each week?
 
@@ -75,7 +75,7 @@ At the top of the ladder are the people who are the best off - those who have th
 
 #### How do you feel right now?
 
-* Slider of very bad to very good
+* Very bad -> Very good
 
 #### To what extent do you expect good things to happen in the future?
 
@@ -144,3 +144,30 @@ At the top of the ladder are the people who are the best off - those who have th
 #### To what extent are you focused on what you are doing?
 
 * Not at all -> Extremely
+
+#### When did you last check Facebook?
+
+* Right now
+* In the last 5 minutes
+* In the last 15 minutes
+* In the last 30 minutes
+* In the last hour
+* 1-2 hours ago
+* 3-5 hours ago
+* 6-12 hours ago
+* 24 hours ago
+* Don't use facebook
+
+#### Beyond any work you've already done today, how many additional hours do you expect to work today?
+
+* 0 (none)
+* Less than 1 hour
+* 1-2 hours
+* 2-3 hours
+* 3-4 hours
+* 4-5 hours
+* 5-6 hours
+
+#### If you could, and it had no negative consequences, would you jump forward in time 24 hours?
+
+* Yes/No
