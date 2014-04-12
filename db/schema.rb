@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406211923) do
+ActiveRecord::Schema.define(version: 20140412010717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "boolean_questions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "text"
+    t.integer  "questionable_id"
+    t.string   "questionable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

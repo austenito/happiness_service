@@ -1,27 +1,15 @@
 questions = YAML.load_file('config/questions.yml')
 
-# questions.each do |question|
-  # text = question['question']
-  # type = question['type']
+questions.each do |question_hash|
+  text = question_hash['question']
+  type = question_hash['type']
 
-  # case type
-    # when "boolean"
-      # Question.create(text: text, type: :boolean)
-    # when "multiple"
-      # Question.create(text: text, type: :multiple, b)
-  # end
-# end
-
-# Question
-#   text
-#   belongs_to: questionable, polymorphic: true
-
-# BooleanQuestion
-#   has_one :question
-#
-# MultipleAnswerQuestion
-#   # responses: [hi, bye, what]
-#
-# RangeQuestion
-#   min: 0
-#   max: 10
+  question = Question.create(text: text)
+  case type
+    when "boolean"
+      question.questionable = BooleanQuestion.create
+      question.save!
+    else
+      puts type
+  end
+end
