@@ -54,3 +54,142 @@
 - question: Have you surprised someone with a gift (including small gifts) in the last week?
   type: boolean
 
+- question: In general, how is your health?
+  type: multiple
+  responses:
+    - Excellent
+    - Very Good
+    - Good
+    - Fair
+    - Poor
+
+- question: 'Where would you place yourself on this ladder?
+
+Think of a ladder representing where people stand in your country.
+
+At the top of the ladder are the people who are the best off - those who have the most money, the most education and the most respected jobs. At the bottom are the people who are the worst off - who have the least money, least education, and the least respected jobs or no job. The higher up you are on the ladder, the closer you are to the people at the very top; the lower you are the closer you are to people at the very bottom.'
+  type: range
+  min: 0
+  max: 10
+
+- question: To what extent is what you're doing interesting?
+  type: range
+  min: 0
+  max: 10
+
+- question: On average, how many hours do you work each week?
+  type: multiple
+  responses:
+    - Less than 5
+    - 5-10
+    - 10-20
+    - 20-30
+    - 30-40
+    - 40-50
+    - 50-60
+    - 60-70
+    - More than 70
+
+- question: How do you feel right now?
+  type: range
+  min: 0
+  max: 10
+
+- question: To what extent do you expect good things to happen in the future?
+  type: range
+  min: 0
+  max: 10
+
+- question: Have you taken any over-the-counter pain medication in the past 24 hours?
+  type: boolean
+
+- question: To what extent have you procrastinated so far today?
+  type: range
+  min: 0
+  max: 10
+
+- question: To what extent are you being productive?
+  type: range
+  min: 0
+  max: 10
+
+- question: Who are you talking or interacting with?
+  type: multiple
+  freeform: true
+  responses:
+    - Spouse/partner/significant other
+    - Children
+    - Parents
+    - Other relatives
+    - Friends
+    - Acquaintances
+    - Strangers
+    - Co-workers
+    - Customers/students
+    - Boss
+
+- question: To what extent do you feel accepted by the person/people you are interacting with?
+  type: range
+  min: 0
+  max: 10
+
+- question: Are you alone?
+  type: boolean
+
+- question: Do you want to do what you're doing?
+  type: boolean
+
+- question: Are you talking or interacting with anyone?
+  type: boolean
+
+- question: Where are you?
+  type: multiple
+  freeform: true
+  responses:
+    - At Home
+    - At Work
+    - In a car
+    - Other
+
+- question: How many people are you talking or interacting with?
+  type: multiple
+  responses:
+    - At Home
+    - At Work
+    - In a car
+
+- question: Do you have to do what you're doing?
+  type: boolean
+
+- question: To what extent are you focused on what you are doing?
+  type: range
+  min: 0
+  max: 10
+
+- question: When did you last check Facebook?
+  type: multiple
+  responses:
+    - Right now
+    - In the last 5 minutes
+    - In the last 15 minutes
+    - In the last 30 minutes
+    - In the last hour
+    - 1-2 hours ago
+    - 3-5 hours ago
+    - 6-12 hours ago
+    - 24 hours ago
+    - Don't use facebook
+
+- question: Beyond any work you've already done today, how many additional hours do you expect to work today?
+  type: multiple
+  responses:
+    - 0 (none)
+    - Less than 1 hour
+    - 1-2 hours
+    - 2-3 hours
+    - 3-4 hours
+    - 4-5 hours
+    - 5-6 hours
+
+- question: If you could, and it had no negative consequences, would you jump forward in time 24 hours?
+  type: boolean

@@ -1,4 +1,4 @@
-class SurveyQuestion < ActiveRecord::Migration
+class CreateSurveyQuestion < ActiveRecord::Migration
   def change
     create_table :survey_questions do |t|
       t.integer :survey_id, index: true

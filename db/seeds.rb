@@ -8,8 +8,16 @@ questions.each do |question_hash|
   case type
     when "boolean"
       question.questionable = BooleanQuestion.create
-      question.save!
+    when "range"
+      min = question_hash['min']
+      max = question_hash['max']
+      question.questionable = RangeQuestion.create(min: min, max: max)
+    when "multiple"
+      responses = question_hash['responses']
+      freeform = question_hash['freeform'] || false
+      question.questionable = MultipleResponseQuestion.create(responses: responses, freeform: freeform)
     else
       puts type
   end
+  question.save!
 end
