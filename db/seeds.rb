@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+questions = YAML.load_file('config/questions.yml')
+
+# questions.each do |question|
+  # text = question['question']
+  # type = question['type']
+
+  # case type
+    # when "boolean"
+      # Question.create(text: text, type: :boolean)
+    # when "multiple"
+      # Question.create(text: text, type: :multiple, b)
+  # end
+# end
+
+# Question
+#   text
+#   belongs_to: questionable, polymorphic: true
+
+# BooleanQuestion
+#   has_one :question
 #
-# Examples:
+# MultipleAnswerQuestion
+#   # responses: [hi, bye, what]
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# RangeQuestion
+#   min: 0
+#   max: 10

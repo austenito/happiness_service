@@ -1,0 +1,56 @@
+- question: How hungry or full are you right now?
+  type: multiple
+  responses:
+    - Very hungry
+    - Somewhat hungry
+    - Neither full nor hungry
+    - Somewhat full
+    - Very full
+
+- question: What time did you wake up this morning?
+  type: time
+
+- question: What time did you got to sleep last night?
+
+- question: Are you judging or evaluating yourself right now (i.e. at the moment just before you were notified)?
+  type: multiple
+  responses:
+    - No
+    - Yes - Negatively
+    - Yes - Neutrally
+    - Yes - Positively
+
+- question: How well did you sleep last night?
+  type: range
+  min: 0
+  max: 10
+
+- question: To what extent are you engrossed in what you are doing?
+  type: range
+  min: 0
+  max: 10
+
+- question: To what extent do you feel accepted by the person/people you are interacting with?
+  type: range
+  min: 0
+  max: 10
+
+- question: Are you judging or evaluating what you are doing right now (i.e. at the moment just before you were notified?)
+  type: multiple
+  responses:
+    - No
+    - Yes - Negatively
+    - Yes - Neutrally
+    - Yes - Positively
+
+- question: In the past 24 hours, have you engaged in sexual activity with another person?
+  type: boolean
+
+- question: Imagine you were given $10 to divide between yourself and a stranger to whom you would remain anonymous. How much would you give to the stranger?
+  type: multiple
+  responses:
+    - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+- question: Have you surprised someone with a gift (including small gifts) in the last week?
+  type: boolean
+
