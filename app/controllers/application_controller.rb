@@ -8,6 +8,7 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate
-    @current_user = User.find_by(api_token: request.headers['USER_TOKEN'])
+    @current_user = User.last
+    # @current_user = User.find_by(api_token: request.headers['USER_TOKEN'])
   end
 end

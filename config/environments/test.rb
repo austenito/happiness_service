@@ -33,4 +33,6 @@ HappinessService::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  config.representer.default_url_options = {:host => "http://test.host"}
 end

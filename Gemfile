@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
 gem 'rails-api'
+gem 'roar-rails'
 gem 'pg'
-gem 'active_model_serializers'
 
 group :development, :test do
   gem 'faker'

@@ -1,14 +1,15 @@
 class Api::V1::SurveyQuestionsController < ApplicationController
+  include Roar::Rails::ControllerAdditions
   respond_to :json
 
   def new
-    respond_with survey_question
+    respond_with survey_question, show_next: false
   end
 
   def create
     survey_question.answer = params[:survey_question][:answer]
     survey_question.save!
-    respond_with survey_question, location: nil
+    respond_with survey_question, { status: :created, location: nil, show_next: true }
   end
 
   private
