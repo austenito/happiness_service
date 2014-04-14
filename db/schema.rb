@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140412130832) do
   create_table "survey_questions", force: true do |t|
     t.integer  "survey_id"
     t.integer  "question_id"
+    t.integer  "order_index"
     t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"

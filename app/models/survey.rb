@@ -4,19 +4,23 @@ class Survey < ActiveRecord::Base
 
   def self.generate(user)
     survey = Survey.new(user: user)
-    5.times { survey.add_random_question }
+    5.times { |i| survey.add_random_question(i) }
     survey.save
     survey
   end
 
-  def add_random_question
+  def add_random_question(order_index)
     question_count = Question.count
     offset = Random.rand(question_count)
     question = Question.offset(offset).first
     if survey_questions.include?(question)
       add_random_question
     else
-      survey_questions.build(question: question)
+      survey_questions.build(question: question, order_index: order_index)
     end
+  end
+
+  def next_question(order_index)
+    survey_questions.where(order_index: order_index + 1).first
   end
 end

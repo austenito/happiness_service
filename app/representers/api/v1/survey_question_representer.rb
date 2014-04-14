@@ -9,10 +9,9 @@ module Api::V1::SurveyQuestionRepresenter
   end
 
   link :next do |args|
-    if args[:show_next]
-      survey_questions = self.survey.survey_questions
-      index = survey_questions.index(self)
-      api_survey_survey_question_url(self.survey, survey_questions[index + 1])
+    next_question = self.survey.next_question(self.order_index)
+    if args[:show_next] && next_question
+      api_survey_survey_question_url(self.survey, next_question)
     end
   end
 end
