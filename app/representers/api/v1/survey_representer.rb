@@ -7,7 +7,13 @@ module Api::V1::SurveyRepresenter
     api_survey_url(self)
   end
 
+  link :submit do
+    api_survey_survey_questions_url(self)
+  end
+
   link :next do
-    api_survey_survey_question_url(self, survey_questions.first)
+    if self.next_question
+      api_survey_survey_question_url(self, self.next_question)
+    end
   end
 end

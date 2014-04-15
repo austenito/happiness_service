@@ -20,7 +20,7 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  def next_question(order_index)
-    survey_questions.where(order_index: order_index + 1).first
+  def next_question
+    survey_questions.where(answer: nil).order(order_index: :asc).first
   end
 end

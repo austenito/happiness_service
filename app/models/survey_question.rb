@@ -5,4 +5,8 @@ class SurveyQuestion < ActiveRecord::Base
   def text
     question.text
   end
+
+  def type
+    question.questionable_type
+  end
 end

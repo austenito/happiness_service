@@ -8,7 +8,7 @@ describe Api::V1::SurveyQuestionsController do
     survey = create(:survey, user: user, survey_questions: [survey_question, next_survey_question])
     set_headers(user, request)
 
-    response = get(:new, { survey_id: survey.id, id: survey_question.id, format: :json })
+    response = get(:show, { survey_id: survey.id, id: survey_question.id, format: :json })
 
     parsed_response = JSON.parse(response.body)
     parsed_response['text'].should == survey_question.text

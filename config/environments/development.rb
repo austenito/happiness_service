@@ -27,5 +27,5 @@ HappinessService::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.representer.default_url_options = {:host => "http://localhost::3000"}
+  config.representer.default_url_options = {:host => "http://localhost:3000"}
 end

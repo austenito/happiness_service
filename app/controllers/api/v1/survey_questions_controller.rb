@@ -2,7 +2,7 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   include Roar::Rails::ControllerAdditions
   respond_to :json
 
-  def new
+  def show
     respond_with survey_question, show_next: false
   end
 
