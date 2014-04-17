@@ -17,6 +17,19 @@ describe Api::V1::SurveyQuestionsController do
     links['next'].should_not be
   end
 
+  it "returns responses from a MultipleResponseQuestion" do
+    user = create(:user)
+    multiple_response_question = create(:multiple_response_question, responses: ['Nyan', 'Cat'])
+    survey_question = SurveyQuestion.new(question_id: multiple_response_question.question.id)
+    survey = create(:survey, user: user, survey_questions: [survey_question])
+    set_headers(user, request)
+
+    response = get(:show, { survey_id: survey.id, id: survey_question.id, format: :json })
+
+    survey_question = SurveyQuestion.new.extend(Api::V1::SurveyQuestionRepresenter).from_json(response.body)
+    survey_question.responses =~ ['Nyan', 'Cat']
+  end
+
   it "accepts a response" do
     user = create(:user)
     survey_question = create(:survey_question, order_index: 1)
