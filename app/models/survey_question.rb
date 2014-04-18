@@ -2,23 +2,23 @@ class SurveyQuestion < ActiveRecord::Base
   belongs_to :survey
   belongs_to :question
 
-  attr_writer :text, :responses, :type
-
   def text
-    @text || question.text
+    question.text
   end
 
   def type
-    @type || question.questionable_type
+    question.questionable_type
   end
 
-  def responses
-    return @responses if @responses
+  def boolean?
+    type == "BooleanQuestion"
+  end
 
-    if question.questionable && question.questionable.respond_to?(:responses)
-      question.questionable.responses
-    else
-      nil
-    end
+  def range?
+    type == "RangeQuestion"
+  end
+
+  def multiple?
+    type == "MultipleResponseQuestion"
   end
 end

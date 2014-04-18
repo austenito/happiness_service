@@ -3,13 +3,21 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   respond_to :json
 
   def show
-    respond_with survey_question, show_next: false
+    representer = if survey_question.boolean?
+      Api::V1::BooleanQuestionRepresenter
+    elsif survey_question.multiple?
+      Api::V1::MultipleResponseQuestionRepresenter
+    elsif survey_question.range?
+      Api::V1::RangeQuestionRepresenter
+    end
+    respond_with survey_question, show_next: false, represent_with: representer
   end
 
   def create
     survey_question.answer = params[:survey_question][:answer]
     survey_question.save!
-    respond_with survey_question, { status: :created, location: nil, show_next: true }
+    respond_with survey_question, { status: :created, location: nil, show_next: true,
+                                    represent_with: nil}
   end
 
   private
