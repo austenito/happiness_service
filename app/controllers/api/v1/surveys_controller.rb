@@ -3,7 +3,7 @@ class Api::V1::SurveysController < ApplicationController
   respond_to :json
 
   def index
-    render({ "hi" => "bye" })
+    respond_with Survey.last, { location: nil, represent_with: Api::V1::RootRepresenter }
   end
 
   def show

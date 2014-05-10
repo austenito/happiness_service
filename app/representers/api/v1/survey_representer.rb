@@ -2,6 +2,7 @@ module Api::V1::SurveyRepresenter
   include Roar::Representer::JSON::HAL
 
   property :id
+  collection :survey_questions, extend: SurveyQuestionRepresenter
 
   link :self do
     api_survey_url(self)

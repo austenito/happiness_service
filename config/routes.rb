@@ -6,4 +6,6 @@ HappinessService::Application.routes.draw do
       end
     end
   end
+
+  root 'api/v1/surveys#index'
 end
