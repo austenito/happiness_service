@@ -21,7 +21,11 @@ module Api::V1::SurveyQuestionRepresenter
     api_survey_url(self.survey)
   end
 
-  link :submit do
+  link :create do
     api_survey_survey_questions_url(self.survey)
+  end
+
+  link :submit do
+    api_survey_survey_question_url(self.survey, self)
   end
 end

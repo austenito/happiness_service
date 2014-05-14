@@ -11,6 +11,11 @@ class Api::V1::SurveysController < ApplicationController
   end
 
   def create
-    respond_with Survey.generate(current_user), { status: :created, location: nil }
+    if params[:random]
+      survey = Survey.generate(current_user)
+    else
+      survey = Survey.create(user: current_user)
+    end
+    respond_with survey, { status: :created, location: nil }
   end
 end

@@ -2,6 +2,8 @@ class Survey < ActiveRecord::Base
   has_many :survey_questions
   belongs_to :user
 
+  accepts_nested_attributes_for :survey_questions
+
   def self.generate(user)
     survey = Survey.new(user: user)
     5.times { |i| survey.add_random_question(i) }
