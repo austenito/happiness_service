@@ -7,18 +7,18 @@ class SurveyQuestion < ActiveRecord::Base
   end
 
   def type
-    question.questionable_type
+    question.question_type
   end
 
   def boolean?
-    type == "BooleanQuestion"
+    type == "boolean"
   end
 
   def range?
-    type == "RangeQuestion"
+    type == "range"
   end
 
   def multiple?
-    type == "MultipleResponseQuestion"
+    type == "multiple_response"
   end
 end

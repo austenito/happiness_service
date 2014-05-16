@@ -11,36 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412130832) do
+ActiveRecord::Schema.define(version: 20140515231549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "boolean_questions", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "multiple_response_questions", force: true do |t|
-    t.string   "responses",  default: [],    array: true
-    t.boolean  "freeform",   default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "questions", force: true do |t|
     t.text     "text"
-    t.integer  "questionable_id"
-    t.string   "questionable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "range_questions", force: true do |t|
-    t.integer  "min",        default: 0
-    t.integer  "max"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "responses",     array: true
+    t.string   "question_type"
   end
 
   create_table "survey_questions", force: true do |t|
@@ -57,13 +38,6 @@ ActiveRecord::Schema.define(version: 20140412130832) do
     t.integer  "survey_question_ids",     default: [],    array: true
     t.integer  "last_responded_question"
     t.boolean  "completed",               default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "time_range_questions", force: true do |t|
-    t.datetime "start"
-    t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

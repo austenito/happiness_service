@@ -3,13 +3,6 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   respond_to :json
 
   def show
-    representer = if survey_question.boolean?
-      Api::V1::BooleanQuestionRepresenter
-    elsif survey_question.multiple?
-      Api::V1::MultipleResponseQuestionRepresenter
-    elsif survey_question.range?
-      Api::V1::RangeQuestionRepresenter
-    end
     respond_with survey_question, show_next: false, represent_with: representer
   end
 
@@ -31,6 +24,6 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   end
 
   def survey_question
-    @survey_question ||= current_user.surveys.find(params[:survey_id]).survey_questions.find(params[:id])
+    @survey_question ||= Survey.find(params[:survey_id]).survey_questions.find(params[:id])
   end
 end

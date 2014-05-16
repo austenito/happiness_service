@@ -4,20 +4,14 @@ questions.each do |question_hash|
   text = question_hash['question']
   type = question_hash['type']
 
-  question = Question.create(text: text)
+  question = Question.create(text: text, question_type: type)
   case type
     when "boolean"
-      question.questionable = BooleanQuestion.create
+      question.responses = [true, false]
     when "range"
-      min = question_hash['min']
-      max = question_hash['max']
-      question.questionable = RangeQuestion.create(min: min, max: max)
+      question.responses = [question_hash['min'], question_hash['max']]
     when "multiple"
-      responses = question_hash['responses']
-      freeform = question_hash['freeform'] || false
-      question.questionable = MultipleResponseQuestion.create(responses: responses, freeform: freeform)
-    else
-      puts type
+      question.responses = question_hash['responses']
   end
   question.save!
 end
