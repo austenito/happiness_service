@@ -7,10 +7,6 @@ module Api::V1::SurveyQuestionRepresenter
   property :responses
   property :answer
 
-  def responses
-    self.question.responses
-  end
-
   link :self do
     api_survey_survey_question_url(self.survey, self)
   end
