@@ -11,6 +11,7 @@
   type: time
 
 - question: What time did you got to sleep last night?
+  type: time
 
 - question: Are you judging or evaluating yourself right now (i.e. at the moment just before you were notified)?
   type: multiple

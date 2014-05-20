@@ -13,5 +13,6 @@ questions.each do |question_hash|
     when "multiple"
       question.responses = question_hash['responses']
   end
+  question.freeform = true if question_hash['freeform'] == true
   question.save!
 end
