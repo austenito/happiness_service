@@ -6,6 +6,7 @@ module Api::V1::SurveyQuestionRepresenter
   property :type
   property :responses
   property :answer
+  property :freeform
 
   link :self do
     api_survey_survey_question_url(self.survey, self)

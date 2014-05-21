@@ -13,4 +13,8 @@ class SurveyQuestion < ActiveRecord::Base
   def responses
     self.question.responses
   end
+
+  def freeform
+    self.question.freeform
+  end
 end
