@@ -9,6 +9,10 @@ module Api::V1::RootRepresenter
     api_surveys_url
   end
 
+  link :users do
+    api_users_url
+  end
+
   link :questions do
     api_questions_url
   end

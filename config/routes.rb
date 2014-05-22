@@ -5,6 +5,7 @@ HappinessService::Application.routes.draw do
       resources :surveys, only: [:show, :index, :create] do
         resources :survey_questions, only: [:show, :update, :create]
       end
+      resources :users, only: [:create, :show]
     end
   end
 
