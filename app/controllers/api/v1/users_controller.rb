@@ -8,13 +8,13 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     token = Digest::SHA512.hexdigest(Time.now.to_s + "nyan")
-    user = User.create(external_user_id: user_params[:user_id], token: token)
+    user = User.create(external_user_id: user_params[:external_user_id], token: token)
     respond_with user, { status: :created, location: nil }
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:user_id)
+    params.require(:user).permit(:external_user_id)
   end
 end
