@@ -16,3 +16,5 @@ questions.each do |question_hash|
   question.freeform = true if question_hash['freeform'] == true
   question.save!
 end
+
+ApiClient.create(name: 'test', token: 'testing')
