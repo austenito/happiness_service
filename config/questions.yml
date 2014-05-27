@@ -103,6 +103,7 @@ At the top of the ladder are the people who are the best off - those who have th
 
 - question: How do you feel right now?
   type: range
+  always_show: true
   min: 0
   max: 10
 

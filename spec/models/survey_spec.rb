@@ -5,8 +5,10 @@ describe Survey do
     it "adds 5 unique questions" do
       user = create(:user)
       5.times { create(:question) }
+      always_show_question = create(:question, always_show: true)
       survey = Survey.generate(user)
-      survey.survey_questions.map(&:id).uniq.count.should == 5
+      survey.survey_questions.first.question.id.should == always_show_question.id
+      survey.survey_questions.map(&:id).uniq.count.should == 6
     end
   end
 

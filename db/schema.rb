@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525181520) do
+ActiveRecord::Schema.define(version: 20140527123024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140525181520) do
     t.string   "responses",                     array: true
     t.string   "question_type"
     t.boolean  "freeform",      default: false
+    t.boolean  "always_show"
   end
 
   create_table "survey_questions", force: true do |t|

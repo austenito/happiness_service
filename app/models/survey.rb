@@ -6,7 +6,10 @@ class Survey < ActiveRecord::Base
 
   def self.generate(user)
     survey = Survey.new(user: user)
-    5.times { |i| survey.add_random_question(i) }
+    Question.where(always_show: true).each_with_index do |question, index|
+      survey.survey_questions.build(question: question, order_index: index)
+    end
+    5.times { |i| survey.add_random_question(survey.survey_questions.count + 1) }
     survey.save
     survey
   end
