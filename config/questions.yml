@@ -50,7 +50,17 @@
 - question: Imagine you were given $10 to divide between yourself and a stranger to whom you would remain anonymous. How much would you give to the stranger?
   type: multiple
   responses:
-    - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
 
 - question: Have you surprised someone with a gift (including small gifts) in the last week?
   type: boolean
