@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140527123024) do
     t.string   "responses",                     array: true
     t.string   "question_type"
     t.boolean  "freeform",      default: false
-    t.boolean  "always_show"
+    t.boolean  "always_show",   default: false
   end
 
   create_table "survey_questions", force: true do |t|

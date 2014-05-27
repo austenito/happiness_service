@@ -3,8 +3,9 @@ questions = YAML.load_file('config/questions.yml')
 questions.each do |question_hash|
   text = question_hash['question']
   type = question_hash['type']
+  always_show = question_hash['always_show']
 
-  question = Question.create(text: text, question_type: type)
+  question = Question.create(text: text, question_type: type, always_show: always_show)
   case type
     when "boolean"
       question.responses = [true, false]
