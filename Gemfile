@@ -6,6 +6,10 @@ gem 'rails-api'
 gem 'roar-rails'
 gem 'pg'
 
+group :production do
+  gem 'unicorn'
+end
+
 group :development, :test do
   gem 'faker'
   gem 'pry-rails'
