@@ -20,3 +20,5 @@ production:
   encoding: unicode
   database: happiness_service_development
   pool: 5
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
