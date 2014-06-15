@@ -7,6 +7,7 @@ gem 'roar-rails'
 gem 'pg'
 
 group :production do
+  gem 'le'
   gem 'unicorn'
 end
 

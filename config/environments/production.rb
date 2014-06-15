@@ -78,3 +78,5 @@ HappinessService::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 end
+
+Rails.logger = Le.new(ENV['LOGENTRIES_TOKEN'])
