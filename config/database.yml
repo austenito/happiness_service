@@ -20,6 +20,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: happiness_service_production
+  template: template0
   pool: 5
   host: <%= ENV['DB_PORT_5432_TCP_ADDR'] %>
   username: <%= ENV['DB_ENV_POSTGRES_USER'] %>
