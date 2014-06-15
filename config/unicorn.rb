@@ -13,8 +13,7 @@ stderr_path "./log/unicorn.log"
 stdout_path "./log/unicorn.log"
 
 # Unicorn socket
-listen "/tmp/unicorn.[app name].sock"
-listen "/tmp/unicorn.myapp.sock"
+listen 5000
 
 # Number of processes
 # worker_processes 4
