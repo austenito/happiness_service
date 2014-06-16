@@ -79,4 +79,4 @@ HappinessService::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 end
 
-Rails.logger = Le.new(ENV['LOGENTRIES_TOKEN'])
+Rails.logger = Le.new(ENV['LOGENTRIES_HAPPINESS_SERVICE_TOKEN'])

@@ -12,9 +12,6 @@ pid "./pids/unicorn.pid"
 stderr_path "./log/unicorn.log"
 stdout_path "./log/unicorn.log"
 
-# Unicorn socket
-listen 3000
-
 # Number of processes
 # worker_processes 4
 worker_processes 2
