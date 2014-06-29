@@ -77,6 +77,8 @@ HappinessService::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.representer.default_url_options = {:host => "http://localhost:3000"}
 end
 
 Rails.logger = Le.new(ENV['LOGENTRIES_HAPPINESS_SERVICE_TOKEN'])
