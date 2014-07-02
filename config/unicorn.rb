@@ -16,8 +16,5 @@ stdout_path "./log/unicorn.log"
 # worker_processes 4
 worker_processes 2
 
-# Unicorn socket
-listen "/sockets/unicorn.happiness_service.sock"
-
 # Time-out
 timeout 30
