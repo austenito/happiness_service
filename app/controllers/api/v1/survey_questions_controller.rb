@@ -1,5 +1,4 @@
 class Api::V1::SurveyQuestionsController < ApplicationController
-  include Roar::Rails::ControllerAdditions
   respond_to :json
 
   def show
@@ -14,7 +13,7 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   end
 
   def create
-    respond_with Survey.find(params[:survey_id]).survey_questions.create(survey_question_params), status: :created
+    respond_with Survey.find(params[:survey_id]).survey_questions.create(survey_question_params), status: :created, location: nil
   end
 
   private

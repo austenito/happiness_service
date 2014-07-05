@@ -1,13 +1,12 @@
 class Api::V1::SurveysController < ApplicationController
-  include Roar::Rails::ControllerAdditions
   respond_to :json
 
   def index
-    respond_with Survey.all, { location: nil }
+    respond_with Survey.all, { location: nil, each_serializer: Api::V1::SurveySerializer }
   end
 
   def show
-    respond_with Survey.find(params[:id]), location: nil
+    respond_with Survey.find(params[:id]), location: nil, serializer: Api::V1::SurveySerializer
   end
 
   def create
@@ -17,6 +16,6 @@ class Api::V1::SurveysController < ApplicationController
     else
       survey = Survey.create(user: user)
     end
-    respond_with survey, { status: :created, location: nil }
+    respond_with survey, { status: :created, location: nil, serializer: Api::V1::SurveySerializer }
   end
 end
