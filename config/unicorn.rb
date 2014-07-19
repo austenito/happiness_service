@@ -3,14 +3,11 @@
 working_directory "."
 
 # Unicorn PID file location
-# pid "/path/to/pids/unicorn.pid"
 pid "./pids/unicorn.pid"
 
 # Path to logs
-# stderr_path "/path/to/log/unicorn.log"
-# stdout_path "/path/to/log/unicorn.log"
-stderr_path "./log/unicorn.log"
-stdout_path "./log/unicorn.log"
+stderr_path "/log/happiness_service/unicorn_error.log"
+stdout_path "/log/happiness_service/unicorn.log"
 
 # Number of processes
 # worker_processes 4
