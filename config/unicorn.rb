@@ -6,8 +6,8 @@ working_directory "."
 pid "./pids/unicorn.pid"
 
 # Path to logs
-stderr_path "/log/happiness_service_unicorn_error.log"
-stdout_path "/log/happiness_service_unicorn.log"
+stderr_path "log/happiness_service_unicorn_error.log"
+stdout_path "log/happiness_service_unicorn.log"
 
 # Number of processes
 # worker_processes 4
