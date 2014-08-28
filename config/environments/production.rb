@@ -76,7 +76,6 @@ HappinessService::Application.configure do
   # config.autoflush_log = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_level = :info
+  config.logger = Logger.new('/apps/log/happiness_service_production.log', 10, 100_000_000)
 end
-
-Rails.logger = Le.new(ENV['LOGENTRIES_HAPPINESS_SERVICE_TOKEN'])
