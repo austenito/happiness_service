@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/austenito/happiness-service.svg?branch=master)
+![Build Status](https://travis-ci.org/austenito/happiness_service.svg?branch=master)
 
 # Happiness Service
 
