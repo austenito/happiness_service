@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/austenito/happiness-service.svg?branch=master)
+
 # Happiness Service
 
 An open source server implementation of [Track Your Happiness](https://www.trackyourhappiness.org), which allows you to answer [questions](https://github.com/austenito/happiness/blob/master/QUESTIONS.md) and store your responses.
