@@ -74,9 +74,6 @@ HappinessService::Application.configure do
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
-
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.logger = Logger.new('/apps/log/happiness_service_production.log', 10, 100_000_000)
 end
 
 Rails.logger = Le.new(ENV['LOGENTRIES_HAPPINESS_SERVICE_TOKEN'])
