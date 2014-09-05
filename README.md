@@ -30,3 +30,7 @@ Questions are simple and general. They have the following schema:
 * type (multiple, boolean, time, range)
 * freeform (boolean)
 * min and max
+
+# Consuming this service
+
+The service can be consumed with the [Poptart](https://github.com/austenito/poptart) gem. It's called Poptart because poptarts make me happy!
