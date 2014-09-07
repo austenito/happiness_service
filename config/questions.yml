@@ -31,11 +31,6 @@
   min: 0
   max: 10
 
-- question: To what extent do you feel accepted by the person/people you are interacting with?
-  type: range
-  min: 0
-  max: 10
-
 - question: Are you judging or evaluating what you are doing right now (i.e. at the moment just before you were notified?)
   type: multiple
   responses:
@@ -140,11 +135,12 @@ At the top of the ladder are the people who are the best off - those who have th
     - Customers/students
     - Boss
     - No one
+  related_questions:
+    - question: To what extent do you feel accepted by the person/people you are interacting with?
+      type: range
+      min: 0
+      max: 10
 
-- question: To what extent do you feel accepted by the person/people you are interacting with?
-  type: range
-  min: 0
-  max: 10
 
 - question: Are you alone?
   type: boolean
@@ -158,6 +154,7 @@ At the top of the ladder are the people who are the best off - those who have th
 - question: Where are you?
   type: multiple
   freeform: true
+  absolute_index: 1
   responses:
     - At Home
     - At Work
@@ -167,9 +164,18 @@ At the top of the ladder are the people who are the best off - those who have th
 - question: How many people are you talking or interacting with?
   type: multiple
   responses:
-    - At Home
-    - At Work
-    - In a car
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - More than 10
 
 - question: Do you have to do what you're doing?
   type: boolean

@@ -6,11 +6,22 @@ describe Survey do
       user = create(:user)
       first_question = create(:question, absolute_index: 0)
       second_question = create(:question, absolute_index: 1)
-      questions = 5.times.map { create(:question) }
+      5.times.map { create(:question) }
       survey = Survey.generate(user)
       survey.survey_questions.first.question.id.should == first_question.id
       survey.survey_questions.second.question.id.should == second_question.id
       survey.survey_questions.map(&:id).uniq.count.should == 5
+    end
+
+    it "adds related questions" do
+      user = create(:user)
+      first_question = create(:question, absolute_index: 0)
+      first_question.related_questions << create(:question)
+      20.times.map { create(:question) }
+      survey = Survey.generate(user)
+      survey.survey_questions.first.question.id.should == first_question.id
+      survey.survey_questions.map(&:id).uniq.count.should == 6
+      survey.survey_questions.map(&:question).map(&:id).include?(first_question.related_questions.first.id).should be
     end
   end
 
