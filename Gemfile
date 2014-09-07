@@ -12,8 +12,10 @@ group :production do
 end
 
 group :development, :test do
+  gem 'mocha', require: 'mocha/api'
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'bourne'
 end

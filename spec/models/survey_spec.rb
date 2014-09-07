@@ -2,13 +2,15 @@ require 'spec_helper'
 
 describe Survey do
   context '.generate' do
-    it "adds 5 unique questions" do
+    it "adds 5 questions ordered by absolute index" do
       user = create(:user)
-      5.times { create(:question) }
-      always_show_question = create(:question, always_show: true)
+      first_question = create(:question, absolute_index: 0)
+      second_question = create(:question, absolute_index: 1)
+      questions = 5.times.map { create(:question) }
       survey = Survey.generate(user)
-      survey.survey_questions.first.question.id.should == always_show_question.id
-      survey.survey_questions.map(&:id).uniq.count.should == 6
+      survey.survey_questions.first.question.id.should == first_question.id
+      survey.survey_questions.second.question.id.should == second_question.id
+      survey.survey_questions.map(&:id).uniq.count.should == 5
     end
   end
 

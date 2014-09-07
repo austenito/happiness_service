@@ -6,9 +6,9 @@ if Question.count == 0
   questions.each do |question_hash|
     text = question_hash['question']
     type = question_hash['type']
-    always_show = question_hash['always_show']
+    absolute_index = question_hash['absolute_index']
 
-    question = Question.create(text: text, question_type: type, always_show: always_show)
+    question = Question.create(text: text, question_type: type, absolute_index: absolute_index)
     case type
     when "boolean"
       question.responses = [true, false]
