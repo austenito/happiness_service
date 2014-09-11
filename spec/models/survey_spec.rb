@@ -27,9 +27,9 @@ describe Survey do
 
   context "#next_question" do
     it "returns next unanswered question by order index" do
-      survey_question1 = create(:survey_question, order_index: 1)
-      survey_question2 = create(:survey_question, order_index: 2)
-      survey_question3 = create(:survey_question, order_index: 3)
+      survey_question1 = build(:survey_question, order_index: 1)
+      survey_question2 = build(:survey_question, order_index: 2)
+      survey_question3 = build(:survey_question, order_index: 3)
 
       survey = Survey.create(survey_questions: [survey_question2 ,survey_question1, survey_question3])
       survey.next_question.should == survey_question1

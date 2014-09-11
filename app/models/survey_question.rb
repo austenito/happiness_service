@@ -1,6 +1,7 @@
 class SurveyQuestion < ActiveRecord::Base
   belongs_to :survey
   belongs_to :question
+  validates :answer, presence: true, on: :update
 
   def text
     question.text
