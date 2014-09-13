@@ -6,16 +6,16 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
   def _links
     {
       self: {
-        href: root_url + 'api'
+        href: root_url
       },
       surveys: {
-        href: api_surveys_url
+        href: 'surveys'
       },
       users: {
-        href: api_users_url
+        href: 'users'
       },
       questions: {
-        href: api_questions_url
+        href: 'questions'
       }
     }
   end
