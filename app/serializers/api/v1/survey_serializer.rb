@@ -9,8 +9,13 @@ class Api::V1::SurveySerializer < ActiveModel::Serializer
       self: {
         href: api_survey_url(object)
       },
-      submit: {
-        href: api_survey_survey_questions_url(object)
+      survey_questions: {
+        post: {
+          href: api_survey_survey_questions_path(object)
+        },
+        put: {
+          href: api_survey_survey_questions_path(object)
+        }
       }
     }
   end

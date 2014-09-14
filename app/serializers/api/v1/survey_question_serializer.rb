@@ -6,16 +6,16 @@ class Api::V1::SurveyQuestionSerializer < ActiveModel::Serializer
   def _links
     {
       self: {
-        href: api_survey_survey_question_url(object.survey, object)
+        href: api_survey_survey_question_path(object.survey, object)
       },
-      survey: {
-        href: api_survey_url(object.survey)
-      },
-      create: {
+      post: {
         href: api_survey_survey_questions_url(object.survey)
       },
-      submit: {
-        href: api_survey_survey_question_url(object.survey, object)
+      put: {
+        href: api_survey_survey_question_path(object.survey, object)
+      },
+      survey: {
+        href: api_survey_path(object.survey)
       }
     }
   end
