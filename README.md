@@ -37,17 +37,109 @@ The service can be consumed with the [Poptart](https://github.com/austenito/popt
 
 # Api Documentation
 
-## User
+## Hypermedia
+
+API endpoints provide hypermedia links pointing to related resources. The supported HTTP methods are the keys of the URIs.
+
+## Questions
 
 ```
-example curl request
+curl localhost -H API-TOKEN:testing localhost:3000/api/questions
 
-example response
+[
+  {
+    "id": 1,
+    "question_type": "multiple",
+    "text": "How hungry or full are you right now?",
+    "responses": [
+      "Very hungry",
+      "Somewhat hungry",
+      "Neither full nor hungry",
+      "Somewhat full",
+      "Very full"
+    ],
+    "freeform": false
+  }
+]
+
 ```
 
-Description of each attribute. 
+## Surveys
 
+```
+curl localhost -H API-TOKEN:testing localhost:3000/api/surveys
 
-# Hypermedia
+{
+  "surveys": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "_links": {
+        "self": {
+          "href": "http://localhost:3000/api/surveys/1"
+        },
+        "survey_questions": {
+          "post": {
+            "href": "/api/surveys/1/survey_questions"
+          },
+          "put": {
+            "href": "/api/surveys/1/survey_questions"
+          }
+        }
+      },
+      "completed": false
+    }
+  ]
+}
+```
 
-Be about it
+## Survey Questions
+
+```
+{
+  "id": 1,
+  "user_id": 1,
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/surveys/1"
+    },
+    "survey_questions": {
+      "post": {
+        "href": "/api/surveys/1/survey_questions"
+      },
+      "put": {
+        "href": "/api/surveys/1/survey_questions"
+      }
+    }
+  },
+  "completed": false,
+  "survey_questions": [
+    {
+      "id": 1,
+      "text": "How do you feel right now?",
+      "type": "range",
+      "responses": [
+        "0",
+        "10"
+      ],
+      "answer": "10",
+      "freeform": false,
+      "_links": {
+        "self": {
+          "href": "/api/surveys/1/survey_questions/1"
+        },
+        "post": {
+          "href": "http://localhost:3000/api/surveys/1/survey_questions"
+        },
+        "put": {
+          "href": "/api/surveys/1/survey_questions/1"
+        },
+        "survey": {
+          "href": "/api/surveys/1"
+        }
+      }
+    }
+  ]
+}
+```
+
