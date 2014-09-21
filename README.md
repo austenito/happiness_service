@@ -41,6 +41,29 @@ The service can be consumed with the [Poptart](https://github.com/austenito/popt
 
 API endpoints provide hypermedia links pointing to related resources. The supported HTTP methods are the keys of the URIs.
 
+## Root Path
+
+```
+curl localhost -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
+
+{
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/"
+    },
+    "surveys": {
+      "href": "api/surveys"
+    },
+    "users": {
+      "href": "api/users"
+    },
+    "questions": {
+      "href": "api/questions"
+    }
+  }
+}
+```
+
 ## Questions
 
 ```
@@ -66,6 +89,8 @@ curl localhost -H API-TOKEN:testing localhost:3000/api/questions
 
 ## Surveys
 
+### Reading surveys
+
 ```
 curl localhost -H API-TOKEN:testing localhost:3000/api/surveys
 
@@ -89,6 +114,109 @@ curl localhost -H API-TOKEN:testing localhost:3000/api/surveys
       },
       "completed": false
     }
+  ]
+}
+```
+
+```
+curl localhost -H API-TOKEN:testing localhost:3000/api/surveys/1
+
+{
+  "id": 1,
+  "user_id": 1,
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/surveys/1"
+    },
+    "survey_questions": {
+      "post": {
+        "href": "/api/surveys/1/survey_questions"
+      },
+      "put": {
+        "href": "/api/surveys/1/survey_questions"
+      }
+    }
+  },
+  "completed": false,
+  "survey_questions": []
+}
+```
+
+### Creating empty survey
+
+```
+curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" } }
+
+{
+  "id": 35,
+  "user_id": 36,
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/surveys/35"
+    },
+    "survey_questions": {
+      "post": {
+        "href": "/api/surveys/35/survey_questions"
+      },
+      "put": {
+        "href": "/api/surveys/35/survey_questions"
+      }
+    }
+  },
+  "completed": false,
+  "survey_questions": []
+}
+```
+
+### Creating survey with random questions
+
+```
+curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" }, "random": true }' localhost:3000/api/surveys
+
+{
+  "id": 36,
+  "user_id": 36,
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/surveys/36"
+    },
+    "survey_questions": {
+      "post": {
+        "href": "/api/surveys/36/survey_questions"
+      },
+      "put": {
+        "href": "/api/surveys/36/survey_questions"
+      }
+    }
+  },
+  "completed": false,
+  "survey_questions": [
+    {
+      "id": 146,
+      "text": "How do you feel right now?",
+      "type": "range",
+      "responses": [
+        "0",
+        "10"
+      ],
+      "answer": null,
+      "freeform": false,
+      "_links": {
+        "self": {
+          "href": "/api/surveys/36/survey_questions/146"
+        },
+        "post": {
+          "href": "http://localhost:3000/api/surveys/36/survey_questions"
+        },
+        "put": {
+          "href": "/api/surveys/36/survey_questions/146"
+        },
+        "survey": {
+          "href": "/api/surveys/36"
+        }
+      }
+    }
+    ...
   ]
 }
 ```
@@ -141,5 +269,28 @@ curl localhost -H API-TOKEN:testing localhost:3000/api/surveys
     }
   ]
 }
+```
+
+### Creating a survey question
+
+```
+curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_question": { "question_id": 31 } }' localhost:3000/api/surveys/35/survey_questions
+
+{
+  "id": 151,
+  "survey_id": 35,
+  "question_id": 31,
+  "answer": null,
+  "created_at": "2014-09-21T20:12:28.959Z",
+  "updated_at": "2014-09-21T20:12:28.959Z"
+}
+```
+
+### Updating a survey question
+
+```
+curl localhost -X PUT -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_question": { "answer": "poptarts" } }' localhost:3000/api/surveys/35/survey_questions/151
+
+# Returns a 204
 ```
 
