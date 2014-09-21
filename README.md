@@ -142,7 +142,7 @@ curl localhost -H API-TOKEN:testing localhost:3000/api/surveys/1
 }
 ```
 
-### Creating empty survey
+### Creating an empty survey
 
 ```
 curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" } }
@@ -168,7 +168,7 @@ curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "surv
 }
 ```
 
-### Creating survey with random questions
+### Creating a survey with random questions
 
 ```
 curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" }, "random": true }' localhost:3000/api/surveys
