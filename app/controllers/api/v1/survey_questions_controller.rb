@@ -2,7 +2,7 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   respond_to :json
 
   def show
-    respond_with survey_question, show_next: false, represent_with: representer
+    respond_with survey_question, { serializer: Api::V1::SurveyQuestionSerializer }
   end
 
   def update
@@ -13,7 +13,8 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   end
 
   def create
-    respond_with Survey.find(params[:survey_id]).survey_questions.create(survey_question_params), status: :created, location: nil
+    survey_question = Survey.find(params[:survey_id]).survey_questions.create(survey_question_params)
+    respond_with survey_question, { status: :created, location: nil, serializer: Api::V1::SurveyQuestionSerializer }
   end
 
   private
