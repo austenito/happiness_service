@@ -10,7 +10,7 @@ class Api::V1::SurveysController < ApplicationController
   end
 
   def create
-    user = User.find(params[:survey][:user_id])
+    user = User.find_by(service_user_id: params[:survey][:service_user_id])
     if params[:random]
       survey = Survey.generate(user)
     else

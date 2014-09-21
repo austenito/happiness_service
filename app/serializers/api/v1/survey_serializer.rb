@@ -1,8 +1,12 @@
 class Api::V1::SurveySerializer < ActiveModel::Serializer
 
-  attributes :id, :user_id, :_links, :completed
+  attributes :id, :service_user_id, :_links, :completed
   has_many :survey_questions, serializer: Api::V1::SurveyQuestionSerializer
   self.root false
+
+  def service_user_id
+    object.user.service_user_id
+  end
 
   def _links
     {

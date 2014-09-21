@@ -1,5 +1,5 @@
 class Api::V1::UserSerializer < ActiveModel::Serializer
-  attributes :id, :service_user_id, :_links, :token
+  attributes :service_user_id, :_links, :token
   self.root false
 
   def _links
