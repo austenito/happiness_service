@@ -279,12 +279,29 @@ curl localhost -H Content-Type:application/json -H API-TOKEN:testing http://loca
 curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_question": { "question_id": 31 } }' localhost:3000/api/surveys/35/survey_questions
 
 {
-  "id": 151,
-  "survey_id": 35,
-  "question_id": 31,
+  "id": 280,
+  "text": "If you could, and it had no negative consequences, would you jump forward in time 24 hours?",
+  "type": "boolean",
+  "responses": [
+    "t",
+    "f"
+  ],
   "answer": null,
-  "created_at": "2014-09-21T20:12:28.959Z",
-  "updated_at": "2014-09-21T20:12:28.959Z"
+  "freeform": false,
+  "_links": {
+    "self": {
+      "href": "/api/surveys/35/survey_questions/280"
+    },
+    "post": {
+      "href": "http://localhost:3000/api/surveys/35/survey_questions"
+    },
+    "put": {
+      "href": "/api/surveys/35/survey_questions/280"
+    },
+    "survey": {
+      "href": "/api/surveys/35"
+    }
+  }
 }
 ```
 
