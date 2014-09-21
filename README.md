@@ -224,6 +224,8 @@ curl localhost -H Content-Type:application/json -H API-TOKEN:testing -d '{ "surv
 ## Survey Questions
 
 ```
+curl localhost -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions/151
+
 {
   "id": 1,
   "user_id": 1,
