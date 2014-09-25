@@ -3,6 +3,7 @@ HappinessService::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: 1) do
       resources :questions, only: [:index] do
         resources :survey_questions, only: [:index]
+        resources :answers, only: [:index]
       end
       resources :surveys, only: [:show, :index, :create] do
         resources :survey_questions, only: [:show, :update, :create] do
