@@ -87,6 +87,23 @@ curl -H API-TOKEN:testing localhost:3000/api/questions
 
 ```
 
+### Creating questions
+
+```
+curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "question_type": "multiple", "text" : "Do you love poptarts?", "responses": ["Yes", "No"], "freeform": true } }' http://localhost:3000/api/questions
+
+{
+  "id": 53,
+  "question_type": "multiple",
+  "text": "Do you love poptarts?",
+  "responses": [
+    "Yes",
+    "No"
+  ],
+  "freeform": false
+}
+```
+
 ## Surveys
 
 ### Reading surveys
