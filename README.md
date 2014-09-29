@@ -20,17 +20,6 @@ rake db:create db:migrate db:seed db:test:prepare
 rspec
 ```
 
-# Questions
-
-All questions have been duplicated from Track Your Happiness. They can be found [here](https://github.com/austenito/happiness_service/blob/master/config/questions.yml)
-
-Questions are simple and general. They have the following schema:
-
-* question text
-* type (multiple, boolean, time, range)
-* freeform (boolean)
-* min and max
-
 # Consuming this service
 
 The service can be consumed with the [Poptart](https://github.com/austenito/poptart) gem. It's called Poptart because poptarts make me happy!
@@ -65,6 +54,15 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
 ```
 
 ## Questions
+
+All questions have been duplicated from Track Your Happiness. They can be found [here](https://github.com/austenito/happiness_service/blob/master/config/questions.yml)
+
+Questions are simple and general. They have the following schema:
+
+* question text
+* type (multiple, boolean, time, range)
+* freeform (boolean)
+* min and max
 
 ```
 curl -H API-TOKEN:testing localhost:3000/api/questions
@@ -103,6 +101,30 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
   "freeform": false
 }
 ```
+
+### Related questions
+
+Sometimes you want to be able to have questions dependent on each other. For example, if you ask "Are you interacting with anyone?", you might want to ask a follow up question, "Who are with?".
+
+You can do so by specifying a `parent_question_id`:
+
+```
+curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "question_type": "multiple", "text" : "Do you love poptarts?", "responses": ["Yes", "No"], "freeform": true, "parent_question_id": 8} }' http://localhost:3000/api/questions
+
+{
+  "id": 86,
+  "question_type": "multiple",
+  "text": "Do you love poptarts?",
+  "responses": [
+    "Yes",
+    "No"
+  ],
+  "freeform": true,
+  "absolute_index": null,
+  "parent_question_id": 8
+}
+```
+
 
 ## Surveys
 
