@@ -41,7 +41,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
       "href": "http://localhost:3000/"
     },
     "surveys": {
-      "href": "api/surveys"
+      "href": "http://localhost:3000/api/surveys"
     },
     "users": {
       "href": "api/users"
