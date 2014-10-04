@@ -19,7 +19,7 @@ class Survey < ActiveRecord::Base
 
   def add_random_questions
     remaining_question_count = 5 - survey_questions.to_a.count
-    remaining_question_count.times { |i| add_random_question(survey_questions.count + 1) }
+    remaining_question_count.times { |i| add_random_question(survey_questions.to_a.count + 1) }
   end
 
   def add_random_question(order_index)

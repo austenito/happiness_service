@@ -9,14 +9,17 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
         href: root_url
       },
       surveys: {
-        href: 'api/surveys'
+        href: "#{api_surveys_url}{/id}{?query*}"
       },
       users: {
-        href: 'api/users'
+        href: "#{api_users_url}{/id}{?query*}"
       },
       questions: {
-        href: 'api/questions'
-      }
+        href: "#{api_questions_url}{/id}{?query*}"
+      },
+      # answers: {
+        # href: api_questions_answers_url
+      # }
     }
   end
 end

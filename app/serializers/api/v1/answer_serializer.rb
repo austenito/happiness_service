@@ -5,7 +5,7 @@ class Api::V1::AnswerSerializer < ActiveModel::Serializer
   def _links
     {
       self: {
-        href: api_survey_survey_question_path(object.survey, object)
+        href: api_survey_survey_question_url(object.survey, object)
       }
     }
   end

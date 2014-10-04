@@ -15,10 +15,10 @@ class Api::V1::SurveySerializer < ActiveModel::Serializer
       },
       survey_questions: {
         post: {
-          href: api_survey_survey_questions_path(object)
+          href: api_survey_survey_questions_url(object)
         },
         put: {
-          href: api_survey_survey_questions_path(object)
+          href: api_survey_survey_questions_url(object)
         }
       }
     }
