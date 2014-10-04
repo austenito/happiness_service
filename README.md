@@ -41,13 +41,13 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
       "href": "http://localhost:3000/"
     },
     "surveys": {
-      "href": "http://localhost:3000/api/surveys"
+      "href": "http://localhost:3000/api/surveys{/id}{?query*}"
     },
     "users": {
-      "href": "api/users"
+      "href": "http://localhost:3000/api/users{/id}{?query*}"
     },
     "questions": {
-      "href": "api/questions"
+      "href": "api/questions{/id}{?query*}"
     }
   }
 }
@@ -144,10 +144,10 @@ curl -H API-TOKEN:testing localhost:3000/api/surveys
         },
         "survey_questions": {
           "post": {
-            "href": "/api/surveys/1/survey_questions"
+            "href": "http://localhost:3000/api/surveys/1/survey_questions"
           },
           "put": {
-            "href": "/api/surveys/1/survey_questions"
+            "href": "http://localhost:3000/api/surveys/1/survey_questions"
           }
         }
       },
@@ -169,10 +169,10 @@ curl -H API-TOKEN:testing localhost:3000/api/surveys/1
     },
     "survey_questions": {
       "post": {
-        "href": "/api/surveys/1/survey_questions"
+        "href": "http://localhost:3000/api/surveys/1/survey_questions"
       },
       "put": {
-        "href": "/api/surveys/1/survey_questions"
+        "href": "http://localhost:3000/api/surveys/1/survey_questions"
       }
     }
   },
@@ -195,10 +195,10 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "se
     },
     "survey_questions": {
       "post": {
-        "href": "/api/surveys/35/survey_questions"
+        "href": "http://localhost:3000/api/surveys/35/survey_questions"
       },
       "put": {
-        "href": "/api/surveys/35/survey_questions"
+        "href": "http://localhost:3000/api/surveys/35/survey_questions"
       }
     }
   },
@@ -221,10 +221,10 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "se
     },
     "survey_questions": {
       "post": {
-        "href": "/api/surveys/36/survey_questions"
+        "href": "http://localhost:3000/api/surveys/36/survey_questions"
       },
       "put": {
-        "href": "/api/surveys/36/survey_questions"
+        "href": "http://localhost:3000/api/surveys/36/survey_questions"
       }
     }
   },
@@ -242,16 +242,16 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "se
       "freeform": false,
       "_links": {
         "self": {
-          "href": "/api/surveys/36/survey_questions/146"
+          "href": "http://localhost:3000/api/surveys/36/survey_questions/146"
         },
         "post": {
           "href": "http://localhost:3000/api/surveys/36/survey_questions"
         },
         "put": {
-          "href": "/api/surveys/36/survey_questions/146"
+          "href": "http://localhost:3000/api/surveys/36/survey_questions/146"
         },
         "survey": {
-          "href": "/api/surveys/36"
+          "href": "http://localhost:3000/api/surveys/36"
         }
       }
     }
@@ -274,10 +274,10 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
     },
     "survey_questions": {
       "post": {
-        "href": "/api/surveys/1/survey_questions"
+        "href": "http://localhost:3000/api/surveys/1/survey_questions"
       },
       "put": {
-        "href": "/api/surveys/1/survey_questions"
+        "href": "http://localhost:3000/api/surveys/1/survey_questions"
       }
     }
   },
@@ -295,16 +295,16 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
       "freeform": false,
       "_links": {
         "self": {
-          "href": "/api/surveys/1/survey_questions/1"
+          "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
         },
         "post": {
           "href": "http://localhost:3000/api/surveys/1/survey_questions"
         },
         "put": {
-          "href": "/api/surveys/1/survey_questions/1"
+          "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
         },
         "survey": {
-          "href": "/api/surveys/1"
+          "href": "http://localhost:3000/api/surveys/1"
         }
       }
     }
@@ -329,16 +329,16 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_questio
   "freeform": false,
   "_links": {
     "self": {
-      "href": "/api/surveys/35/survey_questions/280"
+      "href": "http://localhost:3000/api/surveys/35/survey_questions/280"
     },
     "post": {
       "href": "http://localhost:3000/api/surveys/35/survey_questions"
     },
     "put": {
-      "href": "/api/surveys/35/survey_questions/280"
+      "href": "http://localhost:3000/api/surveys/35/survey_questions/280"
     },
     "survey": {
-      "href": "/api/surveys/35"
+      "href": "http://localhost:3000/api/surveys/35"
     }
   }
 }
