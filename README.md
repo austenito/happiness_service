@@ -344,6 +344,44 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_questio
 }
 ```
 
+### Retrieving all survey questions for a question
+
+```
+curl -H API_TOKEN:testing http://localhost:3000/api/questions/103/survey_questions
+
+{
+  "survey_questions": [
+    {
+      "id": 837,
+      "text": "Do you like poptarts?",
+      "type": "boolean",
+      "responses": [
+        "t",
+        "f"
+      ],
+      "answer": "t",
+      "freeform": false,
+      "_links": {
+        "self": {
+          "href": "http://localhost:3000/api/surveys/195/survey_questions/837"
+        },
+        "post": {
+          "href": "http://localhost:3000/api/surveys/195/survey_questions"
+        },
+        "put": {
+          "href": "http://localhost:3000/api/surveys/195/survey_questions/837"
+        },
+        "survey": {
+          "href": "http://localhost:3000/api/surveys/195"
+        }
+      }
+    }
+    ]
+  }
+```
+
+
+
 ### Updating a survey question
 
 ```
