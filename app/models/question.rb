@@ -12,4 +12,8 @@ class Question < ActiveRecord::Base
     question.save!
     question
   end
+
+  def boolean?
+    question_type == 'boolean'
+  end
 end
