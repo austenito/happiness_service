@@ -6,12 +6,15 @@
     - Neither full nor hungry
     - Somewhat full
     - Very full
+  key: how_hungry_are_you
 
 - question: What time did you wake up this morning?
   type: time
+  key: what_time_did_you_wake_up
 
 - question: What time did you got to sleep last night?
   type: time
+  key: what_time_did_you_sleep
 
 - question: Are you judging or evaluating yourself right now (i.e. at the moment just before you were notified)?
   type: multiple
@@ -20,16 +23,19 @@
     - Yes - Negatively
     - Yes - Neutrally
     - Yes - Positively
+  key: are_you_judging_yourself
 
 - question: How well did you sleep last night?
   type: range
   min: 0
   max: 10
+  key: how_well_did_you_sleep
 
 - question: To what extent are you engrossed in what you are doing?
   type: range
   min: 0
   max: 10
+  key: what_extent_are_you_engrossed
 
 - question: Are you judging or evaluating what you are doing right now (i.e. at the moment just before you were notified?)
   type: multiple
@@ -38,9 +44,12 @@
     - Yes - Negatively
     - Yes - Neutrally
     - Yes - Positively
+  key: are_you_judging_or_evaluating_what_you_are_doing
+
 
 - question: In the past 24 hours, have you engaged in sexual activity with another person?
   type: boolean
+  key: had_sex
 
 - question: Imagine you were given $10 to divide between yourself and a stranger to whom you would remain anonymous. How much would you give to the stranger?
   type: multiple
@@ -56,9 +65,11 @@
     - 8
     - 9
     - 10
+  key: how_much_would_you_give_to_stranger
 
 - question: Have you surprised someone with a gift (including small gifts) in the last week?
   type: boolean
+  key: have_you_surprised_someone
 
 - question: In general, how is your health?
   type: multiple
@@ -68,6 +79,7 @@
     - Good
     - Fair
     - Poor
+  key: how_is_your_health
 
 - question: 'Where would you place yourself on this ladder?
 
@@ -77,11 +89,13 @@ At the top of the ladder are the people who are the best off - those who have th
   type: range
   min: 0
   max: 10
+  key: ladder
 
 - question: To what extent is what you're doing interesting?
   type: range
   min: 0
   max: 10
+  key: what_extent_interesting
 
 - question: On average, how many hours do you work each week?
   type: multiple
@@ -95,30 +109,36 @@ At the top of the ladder are the people who are the best off - those who have th
     - 50-60
     - 60-70
     - More than 70
+  key: how_many_hours_do_you_work
 
 - question: How do you feel right now?
   type: range
   absolute_index: 0
   min: 0
   max: 10
+  key: how_do_you_feel_right_now
 
 - question: To what extent do you expect good things to happen in the future?
   type: range
   min: 0
   max: 10
+  key: good_things_future
 
 - question: Have you taken any over-the-counter pain medication in the past 24 hours?
   type: boolean
+  key: pain_medication
 
 - question: To what extent have you procrastinated so far today?
   type: range
   min: 0
   max: 10
+  key: procrastinated
 
 - question: To what extent are you being productive?
   type: range
   min: 0
   max: 10
+  key: productive
 
 - question: Who are you talking or interacting with?
   type: multiple
@@ -135,6 +155,7 @@ At the top of the ladder are the people who are the best off - those who have th
     - Customers/students
     - Boss
     - No one
+  key: who_are_you_talking_with
   related_questions:
     - question: To what extent do you feel accepted by the person/people you are interacting with?
       type: range
@@ -144,12 +165,15 @@ At the top of the ladder are the people who are the best off - those who have th
 
 - question: Are you alone?
   type: boolean
+  key: are_you_alone
 
 - question: Do you want to do what you're doing?
   type: boolean
+  key: do_you_want_to_do_what_youre_doing
 
 - question: Are you talking or interacting with anyone?
   type: boolean
+  key: are_you_talking_to_anyone
 
 - question: Where are you?
   type: multiple
@@ -160,6 +184,7 @@ At the top of the ladder are the people who are the best off - those who have th
     - At Work
     - In a car
     - Other
+  key: where_are_you
 
 - question: How many people are you talking or interacting with?
   type: multiple
@@ -176,14 +201,17 @@ At the top of the ladder are the people who are the best off - those who have th
     - 9
     - 10
     - More than 10
+  key: how_many_people_are_you_talking_with
 
 - question: Do you have to do what you're doing?
   type: boolean
+  key: do_you_have_to_do_what_youre_doing
 
 - question: To what extent are you focused on what you are doing?
   type: range
   min: 0
   max: 10
+  key: how_focused
 
 - question: When did you last check Facebook?
   type: multiple
@@ -198,6 +226,7 @@ At the top of the ladder are the people who are the best off - those who have th
     - 6-12 hours ago
     - 24 hours ago
     - Don't use facebook
+  key: when_did_last_check_facebook
 
 - question: Beyond any work you've already done today, how many additional hours do you expect to work today?
   type: multiple
@@ -209,6 +238,8 @@ At the top of the ladder are the people who are the best off - those who have th
     - 3-4 hours
     - 4-5 hours
     - 5-6 hours
+  key: how_many_additional_work_hours
 
 - question: If you could, and it had no negative consequences, would you jump forward in time 24 hours?
   type: boolean
+  key: jump_forward_24_hours

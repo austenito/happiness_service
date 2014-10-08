@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
     question = Question.new(question_type: type, text: params[:text],
                             responses: params[:responses], freeform: params[:freeform],
                             parent_question_id: params[:parent_question_id],
-                            absolute_index: params[:absolute_index])
+                            absolute_index: params[:absolute_index], key: params[:key])
 
     question.save!
     question

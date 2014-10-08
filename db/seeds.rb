@@ -2,8 +2,9 @@ def build_question(question_hash)
   text = question_hash['question']
   type = question_hash['type']
   absolute_index = question_hash['absolute_index']
+  key = question_hash['key']
 
-  question = Question.create(text: text, question_type: type, absolute_index: absolute_index)
+  question = Question.create(text: text, question_type: type, absolute_index: absolute_index, key: key)
   case type
   when "boolean"
     question.responses = [true, false]

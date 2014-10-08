@@ -88,7 +88,7 @@ curl -H API-TOKEN:testing localhost:3000/api/questions
 ### Creating questions
 
 ```
-curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "question_type": "multiple", "text" : "Do you love poptarts?", "responses": ["Yes", "No"], "freeform": true } }' http://localhost:3000/api/questions
+curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "question_type": "multiple", "text" : "Do you love poptarts?", "responses": ["Yes", "No"], "freeform": true, "key" : "poptarts" } }' http://localhost:3000/api/questions
 
 {
   "id": 53,
@@ -98,7 +98,8 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
     "Yes",
     "No"
   ],
-  "freeform": false
+  "freeform": false,
+  "key": "poptarts"
 }
 ```
 

@@ -13,6 +13,6 @@ class Api::V1::QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:type,  :absolute_index, :text, :freeform, :question_type, :parent_question_id, { responses: []})
+    params.require(:question).permit(:type,  :absolute_index, :text, :freeform, :question_type, :parent_question_id, { responses: []}, :key)
   end
 end
