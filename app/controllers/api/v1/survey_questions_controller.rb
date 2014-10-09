@@ -2,7 +2,13 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   respond_to :json
 
   def index
-    survey_questions = SurveyQuestion.where(question_id: params[:question_id])
+    question_id = params[:question_id]
+    if question_id.respond_to?(:to_str)
+      survey_questions = SurveyQuestion.joins(:question).where('questions.key = ?', question_id)
+    else
+      survey_questions = SurveyQuestion.where(question_id: question_id)
+    end
+    survey_questions = survey_questions.includes(:survey).includes(:question)
     respond_with survey_questions, { each_serializer: Api::V1::SurveyQuestionSerializer }
   end
 
