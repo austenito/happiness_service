@@ -26,6 +26,17 @@ The service can be consumed with the [Poptart](https://github.com/austenito/popt
 
 # Api Documentation
 
+## Authentication and Authorization
+
+Users have two tokens:
+
+* Service User Id
+* User token
+
+The service user id (SUID) is the external identifier used to identify users in this service. Clients can consume the API and find users in this service with the SUID.
+
+The user token is used for user authorization. It is how the happiness service scopes data for clients. For example, clients can only request data for a user based on their token. This token can be re-generated if the token is compromised.
+
 ## Hypermedia
 
 API endpoints provide hypermedia links pointing to related resources. The supported HTTP methods are the keys of the URIs.
