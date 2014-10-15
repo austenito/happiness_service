@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :surveys
+  has_many :survey_questions, through: :surveys
 
   before_create :generate_token
   before_create :generate_service_user_id

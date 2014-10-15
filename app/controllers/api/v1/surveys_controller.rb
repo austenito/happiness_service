@@ -1,5 +1,6 @@
 class Api::V1::SurveysController < ApplicationController
   respond_to :json
+  before_filter :authenticate_user
 
   def index
     respond_with Survey.all, { location: nil, each_serializer: Api::V1::SurveySerializer }

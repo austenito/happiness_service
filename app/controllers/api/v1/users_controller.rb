@@ -1,8 +1,9 @@
 class Api::V1::UsersController < ApplicationController
   respond_to :json
+  before_filter :authenticate_user, only: [:show]
 
   def show
-    respond_with User.find_by(service_user_id: params[:id]), serializer: Api::V1::UserSerializer
+    respond_with user, serializer: Api::V1::UserSerializer
   end
 
   def create

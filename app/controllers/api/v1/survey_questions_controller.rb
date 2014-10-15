@@ -1,12 +1,13 @@
 class Api::V1::SurveyQuestionsController < ApplicationController
   respond_to :json
+  before_filter :authenticate_user
 
   def index
-    question_id = params[:question_id]
-    if question_id.respond_to?(:to_str)
-      survey_questions = SurveyQuestion.joins(:question).where('questions.key = ?', question_id)
+    question_id = params[:question_id].to_i
+    if question_id > 0
+      survey_questions = user.survey_questions.where(question_id: question_id)
     else
-      survey_questions = SurveyQuestion.where(question_id: question_id)
+      survey_questions = user.survey_questions.joins(:question).where('questions.key = ?', question_id)
     end
     survey_questions = survey_questions.includes(:survey).includes(:question)
     respond_with survey_questions, { each_serializer: Api::V1::SurveyQuestionSerializer }
@@ -35,6 +36,6 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   end
 
   def survey_question
-    @survey_question ||= Survey.find(params[:survey_id]).survey_questions.find(params[:id])
+    @survey_question ||= user.surveys.find(params[:survey_id]).survey_questions.find(params[:id])
   end
 end
