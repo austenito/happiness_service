@@ -3,8 +3,8 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   before_filter :authenticate_user
 
   def index
-    question_id = params[:question_id].to_i
-    if question_id > 0
+    question_id = params[:question_id]
+    if question_id.to_i > 0
       survey_questions = user.survey_questions.where(question_id: question_id)
     else
       survey_questions = user.survey_questions.joins(:question).where('questions.key = ?', question_id)
