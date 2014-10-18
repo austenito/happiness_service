@@ -3,19 +3,18 @@ class Api::V1::SurveysController < ApplicationController
   before_filter :authenticate_user
 
   def index
-    respond_with Survey.all, { location: nil, each_serializer: Api::V1::SurveySerializer }
+    respond_with user.surveys, { location: nil, each_serializer: Api::V1::SurveySerializer }
   end
 
   def show
-    respond_with Survey.find(params[:id]), location: nil, serializer: Api::V1::SurveySerializer
+    respond_with user.surveys.find(params[:id]), location: nil, serializer: Api::V1::SurveySerializer
   end
 
   def create
-    user = User.find_by(service_user_id: params[:survey][:service_user_id])
     if params[:random]
       survey = Survey.generate(user)
     else
-      survey = Survey.create(user: user)
+      survey = user.surveys.create
     end
     respond_with survey, { status: :created, location: nil, serializer: Api::V1::SurveySerializer }
   end
