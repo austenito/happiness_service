@@ -143,7 +143,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
 ### Reading surveys
 
 ```
-curl -H API-TOKEN:testing localhost:3000/api/surveys
+curl -H API-TOKEN:testing SERVICE-USER-ID:testing localhost:3000/api/surveys
 
 {
   "surveys": [
@@ -170,7 +170,7 @@ curl -H API-TOKEN:testing localhost:3000/api/surveys
 ```
 
 ```
-curl -H API-TOKEN:testing localhost:3000/api/surveys/1
+curl -H API-TOKEN:testing SERVICE-USER-ID:testing localhost:3000/api/surveys/1
 
 {
   "id": 1,
@@ -196,7 +196,7 @@ curl -H API-TOKEN:testing localhost:3000/api/surveys/1
 ### Creating an empty survey
 
 ```
-curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" } } localhost:3000/api/surveys
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" } } localhost:3000/api/surveys
 
 {
   "id": 35,
@@ -222,7 +222,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "se
 ### Creating a survey with random questions
 
 ```
-curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" }, "random": true }' localhost:3000/api/surveys
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" }, "random": true }' localhost:3000/api/surveys
 
 {
   "id": 36,
@@ -275,7 +275,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey": { "se
 ## Survey Questions
 
 ```
-curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions/151
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing http://localhost:3000/api/surveys/35/survey_questions/151
 
 {
   "id": 1,
@@ -327,7 +327,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
 ### Creating a survey question
 
 ```
-curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_question": { "question_id": 31 } }' localhost:3000/api/surveys/35/survey_questions
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -d '{ "survey_question": { "question_id": 31 } }' localhost:3000/api/surveys/35/survey_questions
 
 {
   "id": 280,
@@ -397,7 +397,7 @@ curl -H API_TOKEN:testing http://localhost:3000/api/questions/103/survey_questio
 ### Updating a survey question
 
 ```
-curl -X PUT -H Content-Type:application/json -H API-TOKEN:testing -d '{ "survey_question": { "answer": "poptarts" } }' localhost:3000/api/surveys/35/survey_questions/151
+curl -X PUT -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -d '{ "survey_question": { "answer": "poptarts" } }' localhost:3000/api/surveys/35/survey_questions/151
 
 # Returns a 204
 ```
