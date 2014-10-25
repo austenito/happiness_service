@@ -1,7 +1,11 @@
 class Api::V1::SurveyQuestionSerializer < ActiveModel::Serializer
   self.root false
 
-  attributes :id, :text, :type, :responses, :answer, :freeform, :_links, :created_at
+  attributes :id, :text, :type, :responses, :answer, :freeform, :_links, :created_at, :key
+
+  def key
+    object.question.key
+  end
 
   def _links
     {
