@@ -50,4 +50,8 @@ class Survey < ActiveRecord::Base
       end
     end
   end
+
+  def completed
+    survey_questions.where(answer: nil).empty?
+  end
 end
