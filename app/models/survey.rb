@@ -7,7 +7,6 @@ class Survey < ActiveRecord::Base
   def self.generate(user)
     survey = Survey.new(user: user)
     survey.build_ordered_survey_questions
-    survey.survey_questions.build(question: Question.where(key: 'who_are_you_talking_with').first, order_index: 2)
     survey.add_random_questions
     survey.build_related_questions
     survey.save
