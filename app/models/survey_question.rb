@@ -4,6 +4,8 @@ class SurveyQuestion < ActiveRecord::Base
   validates :answer, inclusion: { in: [true, false, "true", "false"]}, on: :update, if: "question.boolean?"
   validates :answer, presence: true, on: :update, unless: "question.boolean?"
 
+  scope :ordered_by_index, order('order_index ASC')
+
   def text
     question.text
   end

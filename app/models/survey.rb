@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  has_many :survey_questions
+  has_many :survey_questions, -> { order 'order_index ASC' }
   belongs_to :user
 
   accepts_nested_attributes_for :survey_questions
@@ -7,14 +7,15 @@ class Survey < ActiveRecord::Base
   def self.generate(user)
     survey = Survey.new(user: user)
     survey.build_ordered_survey_questions
+    survey.survey_questions.build(question: Question.where(key: 'who_are_you_talking_with').first, order_index: 2)
     survey.add_random_questions
     survey.build_related_questions
     survey.save
-    survey
+    survey.reload
   end
 
   def next_question
-    survey_questions.where(answer: nil).order(order_index: :asc).first
+    survey_questions.where(answer: nil).first
   end
 
   def add_random_questions
@@ -36,9 +37,7 @@ class Survey < ActiveRecord::Base
   def build_ordered_survey_questions
     ordered_questions = Question.where.not(absolute_index: nil).order(absolute_index: :asc)
     ordered_questions.each do |question|
-      unless question.parent_question
-        survey_questions.build(question: question, order_index: question.absolute_index)
-      end
+      survey_questions.build(question: question, order_index: question.absolute_index)
     end
   end
 
@@ -46,7 +45,7 @@ class Survey < ActiveRecord::Base
     survey_questions.each do |survey_question|
       related_questions = survey_question.question.related_questions
       if related_questions.present?
-        survey_questions.build(question: related_questions.sample, order_index: survey_question.order_index)
+        survey_questions.build(question: related_questions.sample, order_index: survey_question.order_index + 1)
       end
     end
   end
