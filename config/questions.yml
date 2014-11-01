@@ -186,6 +186,16 @@ At the top of the ladder are the people who are the best off - those who have th
     - Other
   key: where_are_you
 
+- question: What are you doing?
+  type: multiple
+  freeform: true
+  absolute_index: 2
+  responses:
+    - Eating
+    - Bathroom
+    - Working
+  key: what_are_you_doing
+
 - question: How many people are you talking or interacting with?
   type: multiple
   responses:
