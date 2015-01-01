@@ -5,6 +5,10 @@ class Api::V1::QuestionsController < ApplicationController
     respond_with Question.all, each_serializer: Api::V1::QuestionSerializer, root: false
   end
 
+  def show
+    respond_with Question.find(params[:id]), serializer: Api::V1::QuestionSerializer, root: false
+  end
+
   def create
     question = Question.create_from_params(question_params)
     respond_with question, { serializer: Api::V1::QuestionSerializer, location: nil, root: false }

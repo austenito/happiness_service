@@ -75,6 +75,7 @@ Questions are simple and general. They have the following schema:
 * freeform (boolean)
 * min and max
 
+### Retrieve all questions
 ```
 curl -H API-TOKEN:testing localhost:3000/api/questions
 
@@ -90,10 +91,46 @@ curl -H API-TOKEN:testing localhost:3000/api/questions
       "Somewhat full",
       "Very full"
     ],
-    "freeform": false
+    "freeform": false,
+    "absolute_index": null,
+    "parent_question_id": null,
+    "key": "how_hungry_are_you",
+    "_links": {
+      "self": {
+        "href": "http://localhost:3000/api/questions/1"
+      }
+    }
   }
 ]
 
+```
+
+### Retrieve a question
+
+```
+curl -H API-TOKEN:testing localhost:3000/api/questions/1
+
+{
+  "id": 1,
+  "question_type": "multiple",
+  "text": "How hungry or full are you right now?",
+  "responses": [
+    "Very hungry",
+    "Somewhat hungry",
+    "Neither full nor hungry",
+    "Somewhat full",
+    "Very full"
+  ],
+  "freeform": false,
+  "absolute_index": null,
+  "parent_question_id": null,
+  "key": "how_hungry_are_you",
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/questions/1"
+    }
+  }
+}
 ```
 
 ### Creating questions
@@ -111,6 +148,13 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
   ],
   "freeform": false,
   "key": "poptarts"
+  "absolute_index": null,
+  "parent_question_id": null,
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/questions/53"
+    }
+  }
 }
 ```
 
@@ -134,6 +178,11 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
   "freeform": true,
   "absolute_index": null,
   "parent_question_id": 8
+  "_links": {
+    "self": {
+      "href": "http://localhost:3000/api/questions/86"
+    }
+  }
 }
 ```
 
