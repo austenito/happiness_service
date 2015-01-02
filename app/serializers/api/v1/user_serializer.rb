@@ -5,7 +5,7 @@ class Api::V1::UserSerializer < ActiveModel::Serializer
   def _links
     {
       self: {
-        href: api_user_url(object)
+        href: api_user_url
       }
     }
   end

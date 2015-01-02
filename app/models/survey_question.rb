@@ -10,7 +10,7 @@ class SurveyQuestion < ActiveRecord::Base
     question.text
   end
 
-  def type
+  def question_type
     question.question_type
   end
 

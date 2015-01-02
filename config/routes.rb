@@ -8,7 +8,7 @@ HappinessService::Application.routes.draw do
         resources :survey_questions, only: [:show, :update, :create] do
         end
       end
-      resources :users, only: [:create, :show]
+      resource :user, only: [:create, :show]
     end
   end
 
