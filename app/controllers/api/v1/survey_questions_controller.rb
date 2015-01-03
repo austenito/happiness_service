@@ -3,13 +3,15 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   before_filter :authenticate_user
 
   def index
-    question_id = params[:question_id]
-    if question_id.to_i > 0
-      survey_questions = user.survey_questions.where(question_id: question_id)
-    else
-      survey_questions = user.survey_questions.joins(:question).where('questions.key = ?', question_id)
+    survey_questions = user.survey_questions.includes(:question).includes(:survey)
+    if params[:question_id]
+      survey_questions = survey_questions.where(question_id: params[:question_id])
+    elsif params[:key]
+      survey_questions = survey_questions.joins(:question).where('questions.key = ?', params[:key])
+    elsif params[:survey_id]
+      survey_questions = survey_questions.where(survey_id: params[:survey_id])
     end
-    survey_questions = survey_questions.includes(:survey).includes(:question)
+
     respond_with survey_questions, { each_serializer: Api::V1::SurveyQuestionSerializer }
   end
 
@@ -20,7 +22,7 @@ class Api::V1::SurveyQuestionsController < ApplicationController
   def update
     survey_question.answer = params[:survey_question][:answer]
     survey_question.save!
-    respond_with survey_question, { status: :created, location: nil, show_next: true,
+    respond_with survey_question, { status: :no_content, location: nil, show_next: true,
                                     represent_with: nil}
   end
 

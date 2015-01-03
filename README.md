@@ -343,6 +343,55 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
 
 ## Survey Questions
 
+### Retrieving all survey questions
+
+```
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions
+
+"survey_questions": [
+  {
+    {
+      "id": 1,
+      "text": "How do you feel right now?",
+      "type": "range",
+      "responses": [
+        "0",
+        "10"
+      ],
+      "answer": "10",
+      "freeform": false,
+      "_links": {
+        "self": {
+          "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
+        },
+        "post": {
+          "href": "http://localhost:3000/api/surveys/1/survey_questions"
+        },
+        "put": {
+          "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
+        },
+        "survey": {
+          "href": "http://localhost:3000/api/surveys/1"
+        }
+      }
+    }
+  }
+]
+```
+
+Survey questions can also be scoped to the following keys:
+
+* question_id
+* key (the question_key of a question)
+* survey_id
+
+```
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions?question_id=1
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions?key=poptarts
+curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions?survey_id=1
+```
+
+### Retrieving a survey question
 ```
 curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing http://localhost:3000/api/surveys/35/survey_questions/151
 
@@ -375,6 +424,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
 }
 ```
 
+
 ### Creating a survey question
 
 ```
@@ -406,45 +456,6 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
   }
 }
 ```
-
-### Retrieving all survey questions for a question
-
-```
-curl -H API_TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing http://localhost:3000/api/questions/103/survey_questions
-
-{
-  "survey_questions": [
-    {
-      "id": 837,
-      "text": "Do you like poptarts?",
-      "type": "boolean",
-      "responses": [
-        "t",
-        "f"
-      ],
-      "answer": "t",
-      "freeform": false,
-      "_links": {
-        "self": {
-          "href": "http://localhost:3000/api/surveys/195/survey_questions/837"
-        },
-        "post": {
-          "href": "http://localhost:3000/api/surveys/195/survey_questions"
-        },
-        "put": {
-          "href": "http://localhost:3000/api/surveys/195/survey_questions/837"
-        },
-        "survey": {
-          "href": "http://localhost:3000/api/surveys/195"
-        }
-      }
-    }
-    ]
-  }
-```
-
-
-
 ### Updating a survey question
 
 ```

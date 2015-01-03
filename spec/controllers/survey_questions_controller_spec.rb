@@ -1,76 +1,138 @@
-# require 'spec_helper'
+require 'rails_helper'
 
-# describe Api::V1::SurveyQuestionsController do
-  # it "returns a boolean question" do
-    # user = create(:user)
-    # boolean_question = create(:boolean_question)
-    # survey_question = SurveyQuestion.new(question_id: boolean_question.question.id)
-    # survey = create(:survey, user: user, survey_questions: [survey_question])
-    # set_headers(user, request)
+describe Api::V1::SurveyQuestionsController do
+  describe '#index' do
+    before do
+      @user = create(:user)
+      set_headers(@user, request)
+    end
 
-    # response = get(:show, { survey_id: survey.id, id: survey_question.id, format: :json })
+    it 'returns all survey questions' do
+      survey_question = build(:survey_question)
+      survey = create(:survey, user: @user, survey_questions: [survey_question])
 
-    # survey_question_response = Happy::BooleanQuestion.new(JSON.parse(response.body))
-    # survey_question_response.text.should == survey_question.text
-    # survey_question_response.links.self.href.should == api_survey_survey_question_url(survey, survey_question)
-    # survey_question_response.links.next.should_not be
-  # end
+      response = get :index, { format: :json }
+      expect(response.code).to eq("200")
 
-  # it "returns a multiple response question" do
-    # user = create(:user)
-    # multiple_response_question = create(:multiple_response_question, responses: ['Nyan', 'Cat'])
-    # survey_question = SurveyQuestion.new(question_id: multiple_response_question.question.id)
-    # survey = create(:survey, user: user, survey_questions: [survey_question])
-    # set_headers(user, request)
+      survey_questions = JSON.parse(response.body)['survey_questions']
+      expect(survey_questions.first).to match(a_hash_including(
+        'id' => survey_question.id
+        )
+      )
+    end
 
-    # response = get(:show, { survey_id: survey.id, id: survey_question.id, format: :json })
+    it 'returns all survey questions by question id' do
+      survey_question = build(:survey_question)
+      other_survey_question = create(:survey_question, question: build(:question))
 
-    # survey_question = Happy::MultipleResponseQuestion.new(JSON.parse(response.body))
-    # survey_question.responses =~ ['Nyan', 'Cat']
-  # end
+      survey = create(:survey, user: @user, survey_questions: [survey_question])
 
-  # it "returns a range question" do
-    # user = create(:user)
-    # range_question = create(:range_question, min: 0, max: 100)
-    # survey_question = SurveyQuestion.new(question_id: range_question.question.id)
-    # survey = create(:survey, user: user, survey_questions: [survey_question])
-    # set_headers(user, request)
+      response = get :index, { question_id: survey_question.question.id, format: :json }
+      expect(response.code).to eq("200")
 
-    # response = get(:show, { survey_id: survey.id, id: survey_question.id, format: :json })
+      survey_questions = JSON.parse(response.body)
+      expect(survey_questions.count).to eq(1)
+      expect(survey_questions['survey_questions'].first).to match(a_hash_including(
+        'id' => survey_question.id
+        )
+      )
+    end
 
-    # survey_question = Happy::RangeQuestion.new(JSON.parse(response.body))
-    # survey_question.min.should == 0
-    # survey_question.max.should == 100
-  # end
+    it 'returns all survey questions by question key' do
+      question = create(:question, key: 'poptarts')
+      survey_question = build(:survey_question, question: question)
+      other_survey_question = create(:survey_question, question: build(:question, key: 'something else'))
+      survey = create(:survey, user: @user, survey_questions: [survey_question])
 
-  # it "accepts a response" do
-    # user = create(:user)
-    # survey_question = create(:survey_question, order_index: 1)
-    # next_survey_question = create(:survey_question, order_index: 2)
-    # survey = create(:survey, user: user, survey_questions: [survey_question, next_survey_question])
-    # set_headers(user, request)
+      response = get :index, { key: 'poptarts', format: :json }
+      expect(response.code).to eq("200")
 
-    # response = post(:create, { survey_id: survey.id, id: survey_question.id, format: :json,
-                               # survey_question: { answer: 'space' } })
+      survey_questions = JSON.parse(response.body)
+      expect(survey_questions.count).to eq(1)
+      expect(survey_questions['survey_questions'].first).to match(a_hash_including(
+        'id' => survey_question.id
+        )
+      )
+    end
 
-    # response.code.should == "201"
-    # parsed_response = JSON.parse(response.body)
-    # links = parsed_response['_links']
-    # links['next']['href'].should == api_survey_survey_question_url(survey, next_survey_question)
-  # end
+    it 'returns all survey questions by survey id' do
+      survey_question = build(:survey_question)
+      other_survey_question = create(:survey_question)
+      survey = create(:survey, user: @user, survey_questions: [survey_question])
 
-  # it "returns nil when last question is answered" do
-    # user = create(:user)
-    # survey_question = create(:survey_question, order_index: 1)
-    # survey = create(:survey, user: user, survey_questions: [survey_question])
-    # set_headers(user, request)
+      response = get :index, { survey_id: survey.id, format: :json }
+      expect(response.code).to eq("200")
 
-    # response = post(:create, { survey_id: survey.id, id: survey_question.id, format: :json,
-                               # survey_question: { answer: 'space' } })
+      survey_questions = JSON.parse(response.body)
+      expect(survey_questions.count).to eq(1)
+      expect(survey_questions['survey_questions'].first).to match(a_hash_including(
+        'id' => survey_question.id
+        )
+      )
+    end
+  end
 
-    # response.code.should == "201"
-    # parsed_response = JSON.parse(response.body)
-    # links = parsed_response['_links']
-    # links['next'].should_not be
-  # end
-# end
+  describe '#show' do
+    before do
+      @user = create(:user)
+      set_headers(@user, request)
+    end
+
+    it 'returns a survey question' do
+      survey_question = build(:survey_question)
+      survey = create(:survey, user: @user, survey_questions: [survey_question])
+
+      response = get :show, { survey_id: survey.id, id: survey_question.id, format: :json }
+      expect(response.code).to eq("200")
+
+      survey_question_response = JSON.parse(response.body)
+      expect(survey_question_response).to match(a_hash_including(
+        'id' => survey_question.id
+        )
+      )
+    end
+  end
+
+  describe '#create' do
+    before do
+      @user = create(:user)
+      set_headers(@user, request)
+    end
+
+    it 'adds a survey question to a survey' do
+      question = create(:question, text: 'How do you like your poptarts?')
+      survey = create(:survey, user: @user)
+
+      response = get :create, { survey_id: survey.id, survey_question: { question_id: question.id }, format: :json }
+      expect(response.code).to eq("201")
+
+      survey_question_response = JSON.parse(response.body)
+      expect(survey_question_response).to match(a_hash_including(
+        'text' => 'How do you like your poptarts?'
+        )
+      )
+    end
+  end
+
+  describe '#update' do
+    before do
+      @user = create(:user)
+      set_headers(@user, request)
+    end
+
+    it 'answers a survey question' do
+      survey_question = build(:survey_question)
+      survey = create(:survey, user: @user, survey_questions: [survey_question])
+
+      response = get :update, { survey_id: survey.id, id: survey_question.id, survey_question: { answer: 'toasted' }, format: :json }
+      expect(response.code).to eq("204")
+
+      response = get :show, { survey_id: survey.id, id: survey_question.id, format: :json }
+      survey_question_response = JSON.parse(response.body)
+      expect(survey_question_response).to match(a_hash_including(
+        'answer' => 'toasted'
+        )
+      )
+    end
+  end
+end

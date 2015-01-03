@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: happiness_service_development
+  database: happiness_service_production
   pool: 5
 
 test:
