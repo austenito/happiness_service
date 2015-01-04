@@ -12,7 +12,6 @@ describe Api::V1::SurveyQuestionSerializer do
       :question,
       text: 'Do you like poptarts?',
       question_type: 'boolean',
-      freeform: true,
       key: 'poptarts'
     )
     survey_question = build(:survey_question, question: question)
@@ -24,7 +23,6 @@ describe Api::V1::SurveyQuestionSerializer do
         id: survey_question.id,
         text: 'Do you like poptarts?',
         question_type: 'boolean',
-        freeform: true,
         key: 'poptarts'
       )
    )

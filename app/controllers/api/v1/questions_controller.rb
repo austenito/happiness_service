@@ -10,13 +10,16 @@ class Api::V1::QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.create_from_params(question_params)
+    question = Question.create!(question_type: question_params[:question_type],
+                                text: question_params[:text],
+                                responses: question_params[:responses],
+                                key: question_params[:key])
     respond_with question, { serializer: Api::V1::QuestionSerializer, location: nil, root: false }
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:type,  :absolute_index, :text, :freeform, :question_type, :parent_question_id, { responses: []}, :key)
+    params.require(:question).permit(:question_type, :text, :question_type, { responses: []}, :key)
   end
 end

@@ -12,7 +12,6 @@ describe Api::V1::QuestionSerializer do
                      text: 'do you like poptarts?',
                      question_type: 'multiple',
                      responses: ['Yes', 'Of course'],
-                     absolute_index: 5,
                      key: 'poptarts'
                     )
 
@@ -21,8 +20,7 @@ describe Api::V1::QuestionSerializer do
         text: 'do you like poptarts?',
         question_type: 'multiple',
         responses: ['Yes', 'Of course'],
-        key: 'poptarts',
-        absolute_index: 5
+        key: 'poptarts'
       )
     )
   end

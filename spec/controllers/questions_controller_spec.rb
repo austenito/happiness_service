@@ -61,8 +61,5 @@ describe Api::V1::QuestionsController do
         'key' => 'poptarts'
       ))
     end
-
-    xit 'creates a related question' do
-    end
   end
 end
