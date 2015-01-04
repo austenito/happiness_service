@@ -18,7 +18,7 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
         href: "#{api_questions_url}{/id}{?query*}"
       },
       survey_questions: {
-        href: "#{api_questions_url}{/question_id}/survey_questions{?query*}"
+        href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}"
       }
     }
   end

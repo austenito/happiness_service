@@ -47,7 +47,7 @@ describe Api::V1::RootSerializer do
     serializer = Api::V1::RootSerializer.new(Object.new)
     expect(serializer.as_json).to match(
       _links: a_hash_including(
-        survey_questions: { href: "#{api_questions_url}{/question_id}/survey_questions{?query*}" }
+        survey_questions: { href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}" }
       )
     )
   end
