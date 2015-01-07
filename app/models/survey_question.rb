@@ -4,6 +4,8 @@ class SurveyQuestion < ActiveRecord::Base
   validates :answer, inclusion: { in: [true, false, "true", "false"]}, on: :update, if: "question.boolean?"
   validates :answer, presence: true, on: :update, unless: "question.boolean?"
 
+  before_create :stamp_responses
+
   scope :ordered_by_index, order('order_index ASC')
 
   def text
@@ -14,7 +16,9 @@ class SurveyQuestion < ActiveRecord::Base
     question.question_type
   end
 
-  def responses
-    self.question.responses
+  private
+
+  def stamp_responses
+    self.responses = question.responses
   end
 end
