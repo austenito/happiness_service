@@ -1,7 +1,17 @@
 class Api::V1::SurveyQuestionSerializer < ActiveModel::Serializer
   self.root false
 
-  attributes :id, :text, :question_type, :responses, :answer, :_links, :created_at, :key
+  attributes(
+    :id,
+    :text,
+    :question_type,
+    :responses,
+    :answer,
+    :_links,
+    :created_at,
+    :key,
+    :question_id
+  )
 
   def key
     object.question.key

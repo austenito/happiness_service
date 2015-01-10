@@ -23,7 +23,8 @@ describe Api::V1::SurveyQuestionSerializer do
         id: survey_question.id,
         text: 'Do you like poptarts?',
         question_type: 'boolean',
-        key: 'poptarts'
+        key: 'poptarts',
+        question_id: question.id
       )
    )
   end

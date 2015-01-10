@@ -354,6 +354,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
       "id": 1,
       "text": "How do you feel right now?",
       "type": "range",
+      "question_id": 1,
       "responses": [
         "0",
         "10"
@@ -400,6 +401,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
     "id": 1,
     "text": "How do you feel right now?",
     "type": "range",
+    "question_id": 1,
     "responses": [
       "0",
       "10"
@@ -432,6 +434,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
 
 {
   "id": 280,
+  "question_id": 1,
   "text": "If you could, and it had no negative consequences, would you jump forward in time 24 hours?",
   "type": "boolean",
   "responses": [
