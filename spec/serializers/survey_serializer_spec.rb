@@ -45,7 +45,7 @@ describe Api::V1::SurveySerializer do
     expect(serializer.as_json[:_links]).to match(
       a_hash_including(
         'href' => api_survey_survey_questions_url(survey),
-        'rel' => 'survey-survey-question',
+        'rel' => 'survey-question',
         'method' => 'post'
       )
     )
@@ -60,7 +60,7 @@ describe Api::V1::SurveySerializer do
     expect(serializer.as_json[:_links]).to match(
       a_hash_including(
         'href' => api_survey_survey_questions_url(survey),
-        'rel' => 'survey-survey-question',
+        'rel' => 'survey-question',
         'method' => 'put'
       )
     )

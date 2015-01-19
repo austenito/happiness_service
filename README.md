@@ -151,7 +151,7 @@ curl -H API-TOKEN:testing localhost:3000/api/questions/1
 curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "question_type": "multiple", "text" : "Do you love poptarts?", "responses": ["Yes", "No"], "freeform": true, "key" : "poptarts" } }' http://localhost:3000/api/questions
 
 {
-  "id": 53,
+  "id": 74,
   "question_type": "multiple",
   "text": "Do you love poptarts?",
   "responses": [
@@ -163,10 +163,10 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
   "absolute_index": null,
   "parent_question_id": null,
   "_links": [
-      {
-        "rel": "self",
-        "href": "http://localhost:3000/api/questions/74"
-      }
+    {
+      "rel": "self",
+      "href": "http://localhost:3000/api/questions/74"
+    }
   ]
 }
 ```
@@ -202,7 +202,7 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
 {
   "surveys": [
     {
-      "id": 1,
+      "id": 74,
       "user_id": 1,
       "_links": [
         {
@@ -211,12 +211,12 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
         },
         {
           "href": "http://localhost:3000/api/surveys/74/survey_questions",
-          "rel": "survey-survey-question",
+          "rel": "survey-question",
           "method": "post"
         },
         {
           "href": "http://localhost:3000/api/surveys/74/survey_questions",
-          "rel": "survey-survey-question",
+          "rel": "survey-question",
           "method": "put"
         }
       ],
@@ -231,7 +231,7 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
 curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing localhost:3000/api/surveys/1
 
 {
-  "id": 1,
+  "id": 74,
   "user_id": 1,
   "_links": [
     {
@@ -240,12 +240,12 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
-      "rel": "survey-survey-question",
+      "rel": "survey-question",
       "method": "post"
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
-      "rel": "survey-survey-question",
+      "rel": "survey-question",
       "method": "put"
     }
   ],
@@ -260,7 +260,7 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
 curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" } } localhost:3000/api/surveys
 
 {
-  "id": 35,
+  "id": 74,
   "user_id": 36,
   "_links": [
     {
@@ -269,12 +269,12 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
-      "rel": "survey-survey-question",
+      "rel": "survey-question",
       "method": "post"
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
-      "rel": "survey-survey-question",
+      "rel": "survey-question",
       "method": "put"
     }
   ],
