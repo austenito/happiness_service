@@ -11,7 +11,10 @@ describe Api::V1::RootSerializer do
     serializer = Api::V1::RootSerializer.new(Object.new)
     expect(serializer.as_json).to match(
       _links: a_hash_including(
-        self: { href: root_url }
+        {
+          href: root_url,
+          rel: 'self'
+        }
       )
     )
   end
@@ -20,7 +23,10 @@ describe Api::V1::RootSerializer do
     serializer = Api::V1::RootSerializer.new(Object.new)
     expect(serializer.as_json).to match(
       _links: a_hash_including(
-        surveys: { href: "#{api_surveys_url}{/id}{?query*}" }
+        {
+          href: "#{api_surveys_url}{/id}{?query*}",
+          rel: 'surveys'
+        }
       )
     )
   end
@@ -29,7 +35,10 @@ describe Api::V1::RootSerializer do
     serializer = Api::V1::RootSerializer.new(Object.new)
     expect(serializer.as_json).to match(
       _links: a_hash_including(
-        users: { href: "#{api_user_url}{/id}{?query*}" }
+        {
+          href: "#{api_user_url}{/id}{?query*}",
+          rel: 'users'
+        }
       )
     )
   end
@@ -38,16 +47,26 @@ describe Api::V1::RootSerializer do
     serializer = Api::V1::RootSerializer.new(Object.new)
     expect(serializer.as_json).to match(
       _links: a_hash_including(
-        questions: { href: "#{api_questions_url}{/id}{?query*}" }
+        {
+          href: "#{api_questions_url}{/id}{?query*}",
+          rel: 'questions'
+        }
       )
     )
   end
 
-  it 'returns survey questions url' do
+  it 'returns survey questions urls' do
     serializer = Api::V1::RootSerializer.new(Object.new)
     expect(serializer.as_json).to match(
       _links: a_hash_including(
-        survey_questions: { href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}" }
+        {
+          rel: 'survey-survey-questions',
+          href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}"
+        },
+        {
+          rel: 'survey-questions',
+          href: "#{api_questions_url}/survey_questions{?query*}"
+        }
       )
     )
   end

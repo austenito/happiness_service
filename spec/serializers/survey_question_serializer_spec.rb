@@ -35,12 +35,12 @@ describe Api::V1::SurveyQuestionSerializer do
 
     serializer = Api::V1::SurveyQuestionSerializer.new(survey_question)
 
-    expect(serializer.as_json).to match(a_hash_including(
-        _links: a_hash_including(
-          self: { href: api_survey_survey_question_url(survey, survey_question) }
-        )
+    expect(serializer.as_json[:_links]).to match(
+      a_hash_including(
+        'href' => api_survey_survey_question_url(survey, survey_question),
+        'rel' => 'self'
       )
-   )
+    )
   end
 
   it 'returns link to update a survey question' do
@@ -49,12 +49,13 @@ describe Api::V1::SurveyQuestionSerializer do
 
     serializer = Api::V1::SurveyQuestionSerializer.new(survey_question)
 
-    expect(serializer.as_json).to match(a_hash_including(
-        _links: a_hash_including(
-          put: { href: api_survey_survey_question_url(survey, survey_question) }
-        )
+    expect(serializer.as_json[:_links]).to match(
+      a_hash_including(
+        'href' => api_survey_survey_question_url(survey, survey_question),
+        'rel' => 'self',
+        'method' => 'put'
       )
-   )
+    )
   end
 
   it 'returns link to survey question survey' do
@@ -63,11 +64,11 @@ describe Api::V1::SurveyQuestionSerializer do
 
     serializer = Api::V1::SurveyQuestionSerializer.new(survey_question)
 
-    expect(serializer.as_json).to match(a_hash_including(
-        _links: a_hash_including(
-          survey: { href: api_survey_url(survey) }
-        )
+    expect(serializer.as_json[:_links]).to match(
+      a_hash_including(
+        'href' => api_survey_url(survey),
+        'rel' => 'survey'
       )
-   )
+    )
   end
 end

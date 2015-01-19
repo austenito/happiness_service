@@ -9,18 +9,21 @@ class Api::V1::SurveySerializer < ActiveModel::Serializer
   end
 
   def _links
-    {
-      self: {
-        href: api_survey_url(object)
+    [
+      {
+        'href' => api_survey_url(object),
+        'rel' => 'self'
       },
-      survey_questions: {
-        post: {
-          href: api_survey_survey_questions_url(object)
-        },
-        put: {
-          href: api_survey_survey_questions_url(object)
-        }
+      {
+        'href' => api_survey_survey_questions_url(object),
+        'rel' => 'survey-survey-question',
+        'method' => 'post'
+      },
+      {
+        'href' => api_survey_survey_questions_url(object),
+        'rel' => 'survey-survey-question',
+        'method' => 'put'
       }
-    }
+    ]
   end
 end

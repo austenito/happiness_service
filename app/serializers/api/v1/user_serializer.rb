@@ -3,10 +3,11 @@ class Api::V1::UserSerializer < ActiveModel::Serializer
   self.root false
 
   def _links
-    {
-      self: {
-        href: api_user_url
+    [
+      {
+        'href' => api_user_url,
+        'rel' => 'self'
       }
-    }
+    ]
   end
 end

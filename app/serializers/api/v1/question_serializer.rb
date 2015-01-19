@@ -4,10 +4,11 @@ class Api::V1::QuestionSerializer < ActiveModel::Serializer
   self.root false
 
   def _links
-    {
-      self: {
-        href: api_question_url(object)
+    [
+      {
+        'rel' => 'self',
+        'href' => api_question_url(object)
       }
-    }
+    ]
   end
 end

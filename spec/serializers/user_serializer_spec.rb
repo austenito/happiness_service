@@ -21,10 +21,9 @@ describe Api::V1::UserSerializer do
   it 'returns a link to the user' do
     user = create(:user)
     serializer = Api::V1::UserSerializer.new(user)
-    expect(serializer.as_json).to match(a_hash_including(
-        _links: a_hash_including(
-          self: { href: api_user_url }
-        )
+    expect(serializer.as_json[:_links]).to match(a_hash_including(
+        'href' => api_user_url,
+        'rel' => 'self'
       )
     )
   end

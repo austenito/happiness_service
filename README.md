@@ -45,22 +45,33 @@ API endpoints provide hypermedia links pointing to related resources. The suppor
 
 ```
 curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
-
 {
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/"
+  "_links": [
+    {
+      "href": "http://localhost:3000/",
+      "rel": "self"
     },
-    "surveys": {
-      "href": "http://localhost:3000/api/surveys{/id}{?query*}"
+    {
+      "href": "http://localhost:3000/api/surveys{/id}{?query*}",
+      "rel": "surveys"
     },
-    "users": {
-      "href": "http://localhost:3000/api/users{/id}{?query*}"
+    {
+      "href": "http://localhost:3000/api/user{/id}{?query*}",
+      "rel": "users"
     },
-    "questions": {
-      "href": "api/questions{/id}{?query*}"
+    {
+      "href": "http://localhost:3000/api/questions{/id}{?query*}",
+      "rel": "questions"
+    },
+    {
+      "href": "http://localhost:3000/api/questions/surveys/{survey_id}/survey_questions{/id}{?query*}",
+      "rel": "survey-survey-questions"
+    },
+    {
+      "href": "http://localhost:3000/api/questions/survey_questions{?query*}",
+      "rel": "survey-questions"
     }
-  }
+  ]
 }
 ```
 
@@ -125,11 +136,12 @@ curl -H API-TOKEN:testing localhost:3000/api/questions/1
   "absolute_index": null,
   "parent_question_id": null,
   "key": "how_hungry_are_you",
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/questions/1"
-    }
-  }
+  "_links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:3000/api/questions/74"
+      }
+  ]
 }
 ```
 
@@ -150,39 +162,12 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
   "key": "poptarts"
   "absolute_index": null,
   "parent_question_id": null,
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/questions/53"
-    }
-  }
-}
-```
-
-### Related questions
-
-Sometimes you want to be able to have questions dependent on each other. For example, if you ask "Are you interacting with anyone?", you might want to ask a follow up question, "Who are with?".
-
-You can do so by specifying a `parent_question_id`:
-
-```
-curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "question_type": "multiple", "text" : "Do you love poptarts?", "responses": ["Yes", "No"], "freeform": true, "parent_question_id": 8} }' http://localhost:3000/api/questions
-
-{
-  "id": 86,
-  "question_type": "multiple",
-  "text": "Do you love poptarts?",
-  "responses": [
-    "Yes",
-    "No"
-  ],
-  "freeform": true,
-  "absolute_index": null,
-  "parent_question_id": 8
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/questions/86"
-    }
-  }
+  "_links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:3000/api/questions/74"
+      }
+  ]
 }
 ```
 
@@ -197,11 +182,12 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
 
 {
   "service_user_id": "testing"
-  "_links": {
-    "self": {
-      "href": "http://127.0.0.1:3000/api/user"
+  "_links": [
+    {
+      "href": "http://localhost:3000/api/user",
+      "rel": "self"
     }
-  },
+  ],
   "token": "testing"
 }
 ```
@@ -218,19 +204,22 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
     {
       "id": 1,
       "user_id": 1,
-      "_links": {
-        "self": {
-          "href": "http://localhost:3000/api/surveys/1"
+      "_links": [
+        {
+          "href": "http://localhost:3000/api/surveys/74",
+          "rel": "self"
         },
-        "survey_questions": {
-          "post": {
-            "href": "http://localhost:3000/api/surveys/1/survey_questions"
-          },
-          "put": {
-            "href": "http://localhost:3000/api/surveys/1/survey_questions"
-          }
+        {
+          "href": "http://localhost:3000/api/surveys/74/survey_questions",
+          "rel": "survey-survey-question",
+          "method": "post"
+        },
+        {
+          "href": "http://localhost:3000/api/surveys/74/survey_questions",
+          "rel": "survey-survey-question",
+          "method": "put"
         }
-      },
+      ],
       "completed": false
       "survey_questions": []
     }
@@ -244,19 +233,22 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
 {
   "id": 1,
   "user_id": 1,
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/surveys/1"
+  "_links": [
+    {
+      "href": "http://localhost:3000/api/surveys/74",
+      "rel": "self"
     },
-    "survey_questions": {
-      "post": {
-        "href": "http://localhost:3000/api/surveys/1/survey_questions"
-      },
-      "put": {
-        "href": "http://localhost:3000/api/surveys/1/survey_questions"
-      }
+    {
+      "href": "http://localhost:3000/api/surveys/74/survey_questions",
+      "rel": "survey-survey-question",
+      "method": "post"
+    },
+    {
+      "href": "http://localhost:3000/api/surveys/74/survey_questions",
+      "rel": "survey-survey-question",
+      "method": "put"
     }
-  },
+  ],
   "completed": false,
   "survey_questions": []
 }
@@ -270,74 +262,24 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
 {
   "id": 35,
   "user_id": 36,
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/surveys/35"
+  "_links": [
+    {
+      "href": "http://localhost:3000/api/surveys/74",
+      "rel": "self"
     },
-    "survey_questions": {
-      "post": {
-        "href": "http://localhost:3000/api/surveys/35/survey_questions"
-      },
-      "put": {
-        "href": "http://localhost:3000/api/surveys/35/survey_questions"
-      }
+    {
+      "href": "http://localhost:3000/api/surveys/74/survey_questions",
+      "rel": "survey-survey-question",
+      "method": "post"
+    },
+    {
+      "href": "http://localhost:3000/api/surveys/74/survey_questions",
+      "rel": "survey-survey-question",
+      "method": "put"
     }
-  },
+  ],
   "completed": false,
   "survey_questions": []
-}
-```
-
-### Creating a survey with random questions
-
-```
-curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testing -H USER-TOKEN:testing -d '{ "survey": { "service_user_id": "d59dfd171d8915ee80927a6538a5526f53181b6d600510aa0cd43b27665a724d" }, "random": true }' localhost:3000/api/surveys
-
-{
-  "id": 36,
-  "user_id": 36,
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/surveys/36"
-    },
-    "survey_questions": {
-      "post": {
-        "href": "http://localhost:3000/api/surveys/36/survey_questions"
-      },
-      "put": {
-        "href": "http://localhost:3000/api/surveys/36/survey_questions"
-      }
-    }
-  },
-  "completed": false,
-  "survey_questions": [
-    {
-      "id": 146,
-      "text": "How do you feel right now?",
-      "type": "range",
-      "responses": [
-        "0",
-        "10"
-      ],
-      "answer": null,
-      "freeform": false,
-      "_links": {
-        "self": {
-          "href": "http://localhost:3000/api/surveys/36/survey_questions/146"
-        },
-        "post": {
-          "href": "http://localhost:3000/api/surveys/36/survey_questions"
-        },
-        "put": {
-          "href": "http://localhost:3000/api/surveys/36/survey_questions/146"
-        },
-        "survey": {
-          "href": "http://localhost:3000/api/surveys/36"
-        }
-      }
-    }
-    ...
-  ]
 }
 ```
 
@@ -351,7 +293,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
 "survey_questions": [
   {
     {
-      "id": 1,
+      "id": 35,
       "text": "How do you feel right now?",
       "type": "range",
       "question_id": 1,
@@ -360,21 +302,21 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
         "10"
       ],
       "answer": "10",
-      "freeform": false,
-      "_links": {
-        "self": {
-          "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
+      "_links": [
+        {
+          "rel": "self",
+          "href": "http://localhost:3000/api/surveys/74/survey_questions/35"
         },
-        "post": {
-          "href": "http://localhost:3000/api/surveys/1/survey_questions"
+        {
+          "rel": "self",
+          "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
+          "method": "put"
         },
-        "put": {
-          "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
-        },
-        "survey": {
-          "href": "http://localhost:3000/api/surveys/1"
+        {
+          "rel": "survey",
+          "href": "http://localhost:3000/api/surveys/74"
         }
-      }
+      ]
     }
   }
 ]
@@ -398,7 +340,7 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
 
 {
   {
-    "id": 1,
+    "id": 35,
     "text": "How do you feel right now?",
     "type": "range",
     "question_id": 1,
@@ -407,21 +349,21 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
       "10"
     ],
     "answer": "10",
-    "freeform": false,
-    "_links": {
-      "self": {
-        "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
+    "_links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:3000/api/surveys/74/survey_questions/35"
       },
-      "post": {
-        "href": "http://localhost:3000/api/surveys/1/survey_questions"
+      {
+        "rel": "self",
+        "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
+        "method": "put"
       },
-      "put": {
-        "href": "http://localhost:3000/api/surveys/1/survey_questions/1"
-      },
-      "survey": {
-        "href": "http://localhost:3000/api/surveys/1"
+      {
+        "rel": "survey",
+        "href": "http://localhost:3000/api/surveys/74"
       }
-    }
+    ]
   }
 }
 ```
@@ -442,21 +384,21 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
     "f"
   ],
   "answer": null,
-  "freeform": false,
-  "_links": {
-    "self": {
-      "href": "http://localhost:3000/api/surveys/35/survey_questions/280"
+  "_links": [
+    {
+      "rel": "self",
+      "href": "http://localhost:3000/api/surveys/74/survey_questions/35"
     },
-    "post": {
-      "href": "http://localhost:3000/api/surveys/35/survey_questions"
+    {
+      "rel": "self",
+      "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
+      "method": "put"
     },
-    "put": {
-      "href": "http://localhost:3000/api/surveys/35/survey_questions/280"
-    },
-    "survey": {
-      "href": "http://localhost:3000/api/surveys/35"
+    {
+      "rel": "survey",
+      "href": "http://localhost:3000/api/surveys/74"
     }
-  }
+  ]
 }
 ```
 ### Updating a survey question

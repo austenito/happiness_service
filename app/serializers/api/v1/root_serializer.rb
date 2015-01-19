@@ -4,22 +4,31 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
   self.root false
 
   def _links
-    {
-      self: {
-        href: root_url
+    [
+      {
+        href: root_url,
+        rel: 'self'
       },
-      surveys: {
-        href: "#{api_surveys_url}{/id}{?query*}"
+      {
+        href: "#{api_surveys_url}{/id}{?query*}",
+        rel: 'surveys'
       },
-      users: {
-        href: "#{api_user_url}{/id}{?query*}"
+      {
+        href: "#{api_user_url}{/id}{?query*}",
+        rel: 'users'
       },
-      questions: {
-        href: "#{api_questions_url}{/id}{?query*}"
+      {
+        href: "#{api_questions_url}{/id}{?query*}",
+        rel: 'questions'
       },
-      survey_questions: {
-        href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}"
+      {
+        href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}",
+        rel: 'survey-survey-questions'
+      },
+      {
+        href: "#{api_questions_url}/survey_questions{?query*}",
+        rel: 'survey-questions'
       }
-    }
+    ]
   end
 end

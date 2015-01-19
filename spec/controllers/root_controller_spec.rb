@@ -8,7 +8,10 @@ describe Api::V1::RootController do
       response = get :index, format: :json
       expect(response.code).to eq("200")
       links = JSON.parse(response.body)['_links']
-      expect(links['self']).to eq('href' => root_url)
+      expect(links.first).to match(a_hash_including(
+        'rel' => 'self',
+        'href' => root_url
+      ))
     end
   end
 end
