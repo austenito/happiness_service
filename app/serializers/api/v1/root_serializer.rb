@@ -23,11 +23,11 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
       },
       {
         href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}",
-        rel: 'survey-survey-questions'
+        rel: 'survey-questions'
       },
       {
         href: "#{api_questions_url}/survey_questions{?query*}",
-        rel: 'survey-questions'
+        rel: 'survey-questions-by-query'
       }
     ]
   end

@@ -60,11 +60,11 @@ describe Api::V1::RootSerializer do
     expect(serializer.as_json).to match(
       _links: a_hash_including(
         {
-          rel: 'survey-survey-questions',
+          rel: 'survey-questions',
           href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}"
         },
         {
-          rel: 'survey-questions',
+          rel: 'survey-questions-by-query',
           href: "#{api_questions_url}/survey_questions{?query*}"
         }
       )

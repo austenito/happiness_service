@@ -65,11 +65,11 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
     },
     {
       "href": "http://localhost:3000/api/questions/surveys/{survey_id}/survey_questions{/id}{?query*}",
-      "rel": "survey-survey-questions"
+      "rel": "survey-questions"
     },
     {
       "href": "http://localhost:3000/api/questions/survey_questions{?query*}",
-      "rel": "survey-questions"
+      "rel": "survey-questions-by-query"
     }
   ]
 }
