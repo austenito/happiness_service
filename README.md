@@ -39,7 +39,11 @@ The user token is used for user authorization. It is how the happiness service s
 
 ## Hypermedia
 
-API endpoints provide hypermedia links pointing to related resources. The supported HTTP methods are the keys of the URIs.
+API endpoints provide hypermedia links pointing to related resources. All hypermedia links have the following:
+
+* href: the uri template
+* rel: the description of the link to the resource
+* method: the HTTP method the uri supports
 
 ## Root Path
 
@@ -49,27 +53,58 @@ curl -H Content-Type:application/json -H API-TOKEN:testing http://localhost:3000
   "_links": [
     {
       "href": "http://localhost:3000/",
-      "rel": "self"
+      "rel": "self",
+      "method": "GET"
     },
     {
       "href": "http://localhost:3000/api/surveys{/id}{?query*}",
-      "rel": "surveys"
+      "rel": "surveys",
+      "method": "GET"
+    },
+    {
+      "href": "http://localhost:3000/api/surveys",
+      "rel": "surveys",
+      "method": "POST"
     },
     {
       "href": "http://localhost:3000/api/user{/id}{?query*}",
-      "rel": "users"
+      "rel": "users",
+      "method": "GET"
+    },
+    {
+      "href": "http://localhost:3000/api/user",
+      "rel": "users",
+      "method": "POST"
     },
     {
       "href": "http://localhost:3000/api/questions{/id}{?query*}",
-      "rel": "questions"
+      "rel": "questions",
+      "method": "GET"
+    },
+    {
+      "href": "http://localhost:3000/api/questions",
+      "rel": "questions",
+      "method": "POST"
     },
     {
       "href": "http://localhost:3000/api/questions/surveys/{survey_id}/survey_questions{/id}{?query*}",
-      "rel": "survey-questions"
+      "rel": "survey-questions",
+      "method": "GET"
+    },
+    {
+      "href": "http://localhost:3000/api/questions/surveys/{survey_id}/survey_questions",
+      "rel": "survey-questions",
+      "method": "POST"
+    },
+    {
+      "href": "http://localhost:3000/api/questions/surveys/{survey_id}/survey_questions{/id}",
+      "rel": "survey-questions",
+      "method": "PUT"
     },
     {
       "href": "http://localhost:3000/api/questions/survey_questions{?query*}",
-      "rel": "survey-questions-by-query"
+      "rel": "survey-questions-by-query",
+      "method": "GET"
     }
   ]
 }
@@ -106,11 +141,13 @@ curl -H API-TOKEN:testing localhost:3000/api/questions
     "absolute_index": null,
     "parent_question_id": null,
     "key": "how_hungry_are_you",
-    "_links": {
-      "self": {
-        "href": "http://localhost:3000/api/questions/1"
+    "_links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:3000/api/questions/1",
+        "method": "GET"
       }
-    }
+    ]
   }
 ]
 
@@ -137,10 +174,11 @@ curl -H API-TOKEN:testing localhost:3000/api/questions/1
   "parent_question_id": null,
   "key": "how_hungry_are_you",
   "_links": [
-      {
-        "rel": "self",
-        "href": "http://localhost:3000/api/questions/74"
-      }
+    {
+      "rel": "self",
+      "href": "http://localhost:3000/api/questions/1",
+      "method": "GET"
+    }
   ]
 }
 ```
@@ -165,7 +203,8 @@ curl -H Content-Type:application/json -H API-TOKEN:testing -d '{ "question": { "
   "_links": [
     {
       "rel": "self",
-      "href": "http://localhost:3000/api/questions/74"
+      "href": "http://localhost:3000/api/questions/74",
+      "method": "GET"
     }
   ]
 }
@@ -185,7 +224,8 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
   "_links": [
     {
       "href": "http://localhost:3000/api/user",
-      "rel": "self"
+      "rel": "self",
+      "method": "GET"
     }
   ],
   "token": "testing"
@@ -207,17 +247,18 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
       "_links": [
         {
           "href": "http://localhost:3000/api/surveys/74",
-          "rel": "self"
+          "rel": "self",
+          "method": "GET"
         },
         {
           "href": "http://localhost:3000/api/surveys/74/survey_questions",
           "rel": "survey-question",
-          "method": "post"
+          "method": "POST"
         },
         {
           "href": "http://localhost:3000/api/surveys/74/survey_questions",
           "rel": "survey-question",
-          "method": "put"
+          "method": "PUT"
         }
       ],
       "completed": false
@@ -236,17 +277,18 @@ curl -H API-TOKEN:testing -H SERVICE-USER-ID:testing -H USER-TOKEN:testing local
   "_links": [
     {
       "href": "http://localhost:3000/api/surveys/74",
-      "rel": "self"
+      "rel": "self",
+      "method": "GET"
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
       "rel": "survey-question",
-      "method": "post"
+      "method": "POST"
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
       "rel": "survey-question",
-      "method": "put"
+      "method": "PUT"
     }
   ],
   "completed": false,
@@ -265,17 +307,18 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
   "_links": [
     {
       "href": "http://localhost:3000/api/surveys/74",
-      "rel": "self"
+      "rel": "self",
+      "method": "GET"
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
       "rel": "survey-question",
-      "method": "post"
+      "method": "POST"
     },
     {
       "href": "http://localhost:3000/api/surveys/74/survey_questions",
       "rel": "survey-question",
-      "method": "put"
+      "method": "PUT"
     }
   ],
   "completed": false,
@@ -305,16 +348,18 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
       "_links": [
         {
           "rel": "self",
-          "href": "http://localhost:3000/api/surveys/74/survey_questions/35"
+          "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
+          "method": "GET"
         },
         {
           "rel": "self",
           "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
-          "method": "put"
+          "method": "PUT"
         },
         {
           "rel": "survey",
-          "href": "http://localhost:3000/api/surveys/74"
+          "href": "http://localhost:3000/api/surveys/74",
+          "method": "GET"
         }
       ]
     }
@@ -352,16 +397,18 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
     "_links": [
       {
         "rel": "self",
-        "href": "http://localhost:3000/api/surveys/74/survey_questions/35"
+        "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
+        "method": "GET"
       },
       {
         "rel": "self",
         "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
-        "method": "put"
+        "method": "PUT"
       },
       {
         "rel": "survey",
-        "href": "http://localhost:3000/api/surveys/74"
+        "href": "http://localhost:3000/api/surveys/74",
+        "method": "GET"
       }
     ]
   }
@@ -387,16 +434,18 @@ curl -H Content-Type:application/json -H API-TOKEN:testing SERVICE-USER-ID:testi
   "_links": [
     {
       "rel": "self",
-      "href": "http://localhost:3000/api/surveys/74/survey_questions/35"
+      "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
+      "method": "GET"
     },
     {
       "rel": "self",
       "href": "http://localhost:3000/api/surveys/74/survey_questions/35",
-      "method": "put"
+      "method": "PUT"
     },
     {
       "rel": "survey",
-      "href": "http://localhost:3000/api/surveys/74"
+      "href": "http://localhost:3000/api/surveys/74",
+      "method": "GET"
     }
   ]
 }

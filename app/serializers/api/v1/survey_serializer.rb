@@ -12,17 +12,18 @@ class Api::V1::SurveySerializer < ActiveModel::Serializer
     [
       {
         'href' => api_survey_url(object),
-        'rel' => 'self'
+        'rel' => 'self',
+        'method' => 'GET'
       },
       {
         'href' => api_survey_survey_questions_url(object),
         'rel' => 'survey-question',
-        'method' => 'post'
+        'method' => 'POST'
       },
       {
         'href' => api_survey_survey_questions_url(object),
         'rel' => 'survey-question',
-        'method' => 'put'
+        'method' => 'PUT'
       }
     ]
   end

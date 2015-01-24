@@ -6,7 +6,8 @@ class Api::V1::UserSerializer < ActiveModel::Serializer
     [
       {
         'href' => api_user_url,
-        'rel' => 'self'
+        'rel' => 'self',
+        'method' => 'GET'
       }
     ]
   end

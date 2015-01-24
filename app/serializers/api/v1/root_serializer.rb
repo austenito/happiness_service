@@ -7,27 +7,58 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
     [
       {
         href: root_url,
-        rel: 'self'
+        rel: 'self',
+        method: 'GET'
       },
       {
         href: "#{api_surveys_url}{/id}{?query*}",
-        rel: 'surveys'
+        rel: 'surveys',
+        method: 'GET'
+      },
+      {
+        href: "#{api_surveys_url}",
+        rel: 'surveys',
+        method: 'POST'
       },
       {
         href: "#{api_user_url}{/id}{?query*}",
-        rel: 'users'
+        rel: 'users',
+        method: 'GET'
+      },
+      {
+        href: "#{api_user_url}",
+        rel: 'users',
+        method: 'POST'
       },
       {
         href: "#{api_questions_url}{/id}{?query*}",
-        rel: 'questions'
+        rel: 'questions',
+        method: 'GET'
+      },
+      {
+        href: "#{api_questions_url}",
+        rel: 'questions',
+        method: 'POST'
       },
       {
         href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}",
-        rel: 'survey-questions'
+        rel: 'survey-questions',
+        method: 'GET'
+      },
+      {
+        href: "#{api_questions_url}/surveys/{survey_id}/survey_questions",
+        rel: 'survey-questions',
+        method: 'POST'
+      },
+      {
+        href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}",
+        rel: 'survey-questions',
+        method: 'PUT'
       },
       {
         href: "#{api_questions_url}/survey_questions{?query*}",
-        rel: 'survey-questions-by-query'
+        rel: 'survey-questions-by-query',
+        method: 'GET'
       }
     ]
   end

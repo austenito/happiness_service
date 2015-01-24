@@ -7,7 +7,8 @@ class Api::V1::QuestionSerializer < ActiveModel::Serializer
     [
       {
         'rel' => 'self',
-        'href' => api_question_url(object)
+        'href' => api_question_url(object),
+        'method' => 'GET'
       }
     ]
   end

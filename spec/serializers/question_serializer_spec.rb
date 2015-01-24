@@ -31,7 +31,8 @@ describe Api::V1::QuestionSerializer do
     expect(serializer.as_json[:_links]).to match(
       a_hash_including(
         'rel' => 'self',
-        'href' => api_question_url(question)
+        'href' => api_question_url(question),
+        'method' => 'GET'
       )
     )
   end

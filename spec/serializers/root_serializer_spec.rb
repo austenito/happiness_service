@@ -13,7 +13,8 @@ describe Api::V1::RootSerializer do
       _links: a_hash_including(
         {
           href: root_url,
-          rel: 'self'
+          rel: 'self',
+          method: 'GET'
         }
       )
     )
@@ -25,7 +26,13 @@ describe Api::V1::RootSerializer do
       _links: a_hash_including(
         {
           href: "#{api_surveys_url}{/id}{?query*}",
-          rel: 'surveys'
+          rel: 'surveys',
+          method: 'GET'
+        },
+        {
+          href: "#{api_surveys_url}",
+          rel: 'surveys',
+          method: 'POST'
         }
       )
     )
@@ -37,7 +44,13 @@ describe Api::V1::RootSerializer do
       _links: a_hash_including(
         {
           href: "#{api_user_url}{/id}{?query*}",
-          rel: 'users'
+          rel: 'users',
+          method: 'GET'
+        },
+        {
+          href: "#{api_user_url}",
+          rel: 'users',
+          method: 'POST'
         }
       )
     )
@@ -49,7 +62,13 @@ describe Api::V1::RootSerializer do
       _links: a_hash_including(
         {
           href: "#{api_questions_url}{/id}{?query*}",
-          rel: 'questions'
+          rel: 'questions',
+          method: 'GET'
+        },
+        {
+          href: "#{api_questions_url}",
+          rel: 'questions',
+          method: 'POST'
         }
       )
     )
@@ -61,11 +80,23 @@ describe Api::V1::RootSerializer do
       _links: a_hash_including(
         {
           rel: 'survey-questions',
-          href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}"
+          href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}{?query*}",
+          method: 'GET'
+        },
+        {
+          rel: 'survey-questions',
+          href: "#{api_questions_url}/surveys/{survey_id}/survey_questions",
+          method: 'POST'
+        },
+        {
+          rel: 'survey-questions',
+          href: "#{api_questions_url}/surveys/{survey_id}/survey_questions{/id}",
+          method: 'PUT'
         },
         {
           rel: 'survey-questions-by-query',
-          href: "#{api_questions_url}/survey_questions{?query*}"
+          href: "#{api_questions_url}/survey_questions{?query*}",
+          method: 'GET'
         }
       )
     )

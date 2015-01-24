@@ -38,7 +38,8 @@ describe Api::V1::SurveyQuestionSerializer do
     expect(serializer.as_json[:_links]).to match(
       a_hash_including(
         'href' => api_survey_survey_question_url(survey, survey_question),
-        'rel' => 'self'
+        'rel' => 'self',
+        'method' => 'GET'
       )
     )
   end
@@ -53,7 +54,7 @@ describe Api::V1::SurveyQuestionSerializer do
       a_hash_including(
         'href' => api_survey_survey_question_url(survey, survey_question),
         'rel' => 'self',
-        'method' => 'put'
+        'method' => 'PUT'
       )
     )
   end
@@ -67,7 +68,8 @@ describe Api::V1::SurveyQuestionSerializer do
     expect(serializer.as_json[:_links]).to match(
       a_hash_including(
         'href' => api_survey_url(survey),
-        'rel' => 'survey'
+        'rel' => 'survey',
+        'method' => 'GET'
       )
     )
   end
