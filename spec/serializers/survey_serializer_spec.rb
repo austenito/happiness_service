@@ -51,19 +51,4 @@ describe Api::V1::SurveySerializer do
       )
     )
   end
-
-  it 'returns link to update survey questions' do
-    user = create(:user)
-    survey = create(:survey, user: user)
-
-    serializer = Api::V1::SurveySerializer.new(survey)
-
-    expect(serializer.as_json[:_links]).to match(
-      a_hash_including(
-        'href' => api_survey_survey_questions_url(survey),
-        'rel' => 'survey-question',
-        'method' => 'PUT'
-      )
-    )
-  end
 end
