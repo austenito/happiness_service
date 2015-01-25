@@ -29,8 +29,6 @@ GEM
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
     arel (4.0.2)
-    bourne (1.5.0)
-      mocha (>= 0.13.2, < 0.15)
     builder (3.1.4)
     coderay (1.1.0)
     diff-lcs (1.2.5)
@@ -50,12 +48,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
-    mocha (0.14.0)
-      metaclass (~> 0.0.1)
     multi_json (1.10.1)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -130,12 +125,10 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   addressable
-  bourne
   factory_girl_rails
   faker
   hashie
   le
-  mocha
   pg
   pry-rails
   rails (= 4.0.4)
