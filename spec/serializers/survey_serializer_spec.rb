@@ -46,7 +46,7 @@ describe Api::V1::SurveySerializer do
     expect(serializer.as_json[:_links]).to match(
       a_hash_including(
         'href' => api_survey_survey_questions_url(survey),
-        'rel' => 'survey-question',
+        'rel' => 'survey-questions',
         'method' => 'POST'
       )
     )

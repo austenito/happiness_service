@@ -17,7 +17,7 @@ class Api::V1::SurveySerializer < ActiveModel::Serializer
       },
       {
         'href' => api_survey_survey_questions_url(object),
-        'rel' => 'survey-question',
+        'rel' => 'survey-questions',
         'method' => 'POST'
       }
     ]

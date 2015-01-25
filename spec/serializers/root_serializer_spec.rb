@@ -95,7 +95,7 @@ describe Api::V1::RootSerializer do
         },
         {
           rel: 'survey-questions-by-query',
-          href: "#{api_questions_url}/survey_questions{?query*}",
+          href: "#{api_survey_questions_url}{?query*}",
           method: 'GET'
         }
       )

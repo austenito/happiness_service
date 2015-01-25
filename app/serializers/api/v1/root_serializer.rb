@@ -56,7 +56,7 @@ class Api::V1::RootSerializer < ActiveModel::Serializer
         method: 'PUT'
       },
       {
-        href: "#{api_questions_url}/survey_questions{?query*}",
+        href: "#{api_survey_questions_url}{?query*}",
         rel: 'survey-questions-by-query',
         method: 'GET'
       }
