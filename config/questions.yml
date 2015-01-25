@@ -156,12 +156,6 @@ At the top of the ladder are the people who are the best off - those who have th
     - Boss
     - No one
   key: who_are_you_talking_with
-  related_questions:
-    - question: To what extent do you feel accepted by the person/people you are interacting with?
-      type: range
-      min: 0
-      max: 10
-
 
 - question: Are you alone?
   type: boolean
