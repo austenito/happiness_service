@@ -37,6 +37,21 @@ describe Api::V1::QuestionsController do
         'text' => 'How do you do?'
       ))
     end
+
+    it 'returns the question by key' do
+      user = create(:user)
+      set_headers(user, request)
+      question = create(:question, text: 'How do you do?', key: 'poptarts')
+
+      response = get :show, { id: 'poptarts', format: :json }
+
+      expect(response.code).to eq("200")
+
+      question = JSON.parse(response.body)
+      expect(question).to match(a_hash_including(
+        'text' => 'How do you do?'
+      ))
+    end
   end
 
   describe '#create' do

@@ -6,7 +6,11 @@ class Api::V1::QuestionsController < ApplicationController
   end
 
   def show
+    if params[:id].to_i == 0
+      respond_with Question.find_by(key: params[:id]), serializer: Api::V1::QuestionSerializer, root: false
+    else
     respond_with Question.find(params[:id]), serializer: Api::V1::QuestionSerializer, root: false
+    end
   end
 
   def create
